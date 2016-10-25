@@ -23,21 +23,23 @@ package org.wahlzeit.model;
 /**
  *
  */
-public class Location  {
+public class Coordinate {
+	protected double latitude;
+	protected double longitude;
 
-	private Coordinate coordinate;
-
-	public Location(Coordinate coordinate)
-	{
-		if(coordinate == null)
-		{
-			throw new IllegalArgumentException();
-		}
-
-		this.coordinate = coordinate;
+	public void latitude(double value) {
+		latitude = value;
 	}
 
-	public Coordinate getCoordinate() {
-		return coordinate;
+	public double latitdue() {
+		return latitude;
+	}
+
+	public void longitude(double value) {
+		longitude = value;
+	}
+
+	public double longitude() {
+		return longitude;
 	}
 }
