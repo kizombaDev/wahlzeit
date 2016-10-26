@@ -42,4 +42,17 @@ public class Coordinate {
 	public double longitude() {
 		return longitude;
 	}
+
+	public double getDistance(Coordinate coordinate) {
+		double earthRadius = 6371;
+
+		double absoluteLongitudeDifferenceInRad = Math.toRadians(Math.abs(coordinate.longitude() - longitude()));
+		double firstLatitudeInRad = Math.toRadians(latitdue());
+		double secondLatitudeInRad = Math.toRadians(coordinate.latitdue());
+
+		double dividend = Math.sqrt(Math.pow(Math.cos(secondLatitudeInRad) * Math.sin(absoluteLongitudeDifferenceInRad), 2) + Math.pow(Math.cos(firstLatitudeInRad) * Math.sin(secondLatitudeInRad) - Math.sin(firstLatitudeInRad) * Math.cos(secondLatitudeInRad) * Math.cos(absoluteLongitudeDifferenceInRad), 2));
+		double divisor = Math.sin(firstLatitudeInRad) * Math.sin(secondLatitudeInRad) + Math.cos(firstLatitudeInRad) * Math.cos(secondLatitudeInRad) * Math.cos(absoluteLongitudeDifferenceInRad);
+
+		return Math.atan(dividend / divisor) * earthRadius;
+	}
 }
