@@ -21,34 +21,55 @@
 package org.wahlzeit.model;
 
 /**
- *
+ * Class that represents a coordinate consisting of a latitude and a longitude
  */
 public class Coordinate {
-	protected double latitude;
-	protected double longitude;
+	private double latitude;
+	private double longitude;
 
+	/**
+	 * Sets the latitude degrees
+	 * @param value Latitude degrees
+	 */
 	public void latitude(double value) {
 		latitude = value;
 	}
 
-	public double latitdue() {
+	/**
+	 * Gets the longitude in degrees
+	 * @return Longitude in degrees
+	 */
+	public double latitude() {
 		return latitude;
 	}
 
+	/**
+	 * Sets the longitude degrees
+	 * @param value Longitude degrees
+	 */
 	public void longitude(double value) {
 		longitude = value;
 	}
 
+	/**
+	 * Gets the longitude in degrees
+	 * @return Longitude in degrees
+	 */
 	public double longitude() {
 		return longitude;
 	}
 
+	/**
+	 * Calculates the distance between two coordinates.
+	 * @param coordinate The second coordinate
+	 * @return Returns the distance in km
+	 */
 	public double getDistance(Coordinate coordinate) {
 		double earthRadius = 6371;
 
 		double absoluteLongitudeDifferenceInRad = Math.toRadians(Math.abs(coordinate.longitude() - longitude()));
-		double firstLatitudeInRad = Math.toRadians(latitdue());
-		double secondLatitudeInRad = Math.toRadians(coordinate.latitdue());
+		double firstLatitudeInRad = Math.toRadians(latitude());
+		double secondLatitudeInRad = Math.toRadians(coordinate.latitude());
 
 		double dividend = Math.sqrt(Math.pow(Math.cos(secondLatitudeInRad) * Math.sin(absoluteLongitudeDifferenceInRad), 2) + Math.pow(Math.cos(firstLatitudeInRad) * Math.sin(secondLatitudeInRad) - Math.sin(firstLatitudeInRad) * Math.cos(secondLatitudeInRad) * Math.cos(absoluteLongitudeDifferenceInRad), 2));
 		double divisor = Math.sin(firstLatitudeInRad) * Math.sin(secondLatitudeInRad) + Math.cos(firstLatitudeInRad) * Math.cos(secondLatitudeInRad) * Math.cos(absoluteLongitudeDifferenceInRad);

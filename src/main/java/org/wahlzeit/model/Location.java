@@ -21,12 +21,16 @@
 package org.wahlzeit.model;
 
 /**
- *
+ * Represents the location of an object, for example the {@link Photo}
  */
 public class Location  {
 
 	private Coordinate coordinate;
 
+	/**
+	 *
+	 * @param coordinate The coordinates of the location. Null is not allowed
+	 */
 	public Location(Coordinate coordinate)
 	{
 		if(coordinate == null)
@@ -37,6 +41,10 @@ public class Location  {
 		this.coordinate = coordinate;
 	}
 
+	/**
+	 * Returns the coordinate of the location
+	 * @return The coordinate of the location
+	 */
 	public Coordinate getCoordinate() {
 		return coordinate;
 	}

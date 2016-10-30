@@ -424,10 +424,18 @@ public class Photo extends DataObject {
 		incWriteCount();
 	}
 
+	/**
+	 * Sets the new location of the {@link Photo}
+	 * @param location The new location of the {@link Photo}
+	 */
 	public void setLocation(Location location) {
 		this.location = location;
 	}
 
+	/**
+	 * Returns the location of the {@link Photo}
+	 * @return Returns the location. Can be null
+	 */
 	public Location getLocation() {
 		return location;
 	}

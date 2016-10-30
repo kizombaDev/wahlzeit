@@ -8,8 +8,9 @@ import org.junit.Test;
  * Test class for {@link Coordinate}.
  */
 public class CoordinateTest {
-	private static final double SampleValue = 5.2;
-	private static final double DELTA = 1e-15;
+	private static final double SAMPLE_DEGREE_VALUE = 5.2;
+	private static final double DEGREE_VALUE_DELTA = 1e-15;
+	private static final double DISTANCE_VALUE_DELTA = 1e-5;
 	private Coordinate coordinate;
 
 	@Before
@@ -19,14 +20,14 @@ public class CoordinateTest {
 
 	@Test
 	public void testLatitude() {
-		coordinate.latitude(SampleValue);
-		Assert.assertEquals(SampleValue, coordinate.latitdue(), DELTA);
+		coordinate.latitude(SAMPLE_DEGREE_VALUE);
+		Assert.assertEquals(SAMPLE_DEGREE_VALUE, coordinate.latitude(), DEGREE_VALUE_DELTA);
 	}
 
 	@Test
 	public void testLongitude() {
-		coordinate.longitude(SampleValue);
-		Assert.assertEquals(SampleValue, coordinate.longitude(), DELTA);
+		coordinate.longitude(SAMPLE_DEGREE_VALUE);
+		Assert.assertEquals(SAMPLE_DEGREE_VALUE, coordinate.longitude(), DEGREE_VALUE_DELTA);
 	}
 
 	@Test
@@ -40,7 +41,7 @@ public class CoordinateTest {
 		london.longitude(-0.1277583);
 		london.latitude(51.5073509);
 
-		Assert.assertEquals(5570, newYork.getDistance(london), 1);
+		Assert.assertEquals(5570, newYork.getDistance(london), DISTANCE_VALUE_DELTA);
 	}
 
 	@Test
@@ -54,6 +55,6 @@ public class CoordinateTest {
 		london.longitude(-0.1277583);
 		london.latitude(51.5073509);
 
-		Assert.assertEquals(9670, capetown.getDistance(london), 1);
+		Assert.assertEquals(9670, capetown.getDistance(london), DISTANCE_VALUE_DELTA);
 	}
 }
