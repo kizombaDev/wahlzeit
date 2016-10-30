@@ -33,28 +33,39 @@ public class CoordinateTest {
 	@Test
 	public void testDistanceBetweenNewYorkAndLondon()
 	{
-		Coordinate newYork = new Coordinate();
-		newYork.longitude(-74.005941);
-		newYork.latitude(40.712784);
+		Coordinate newYork = getNewYorkCoordinate();
+		Coordinate london = getLondonCoordinate();
 
-		Coordinate london = new Coordinate();
-		london.longitude(-0.1277583);
-		london.latitude(51.5073509);
-
-		Assert.assertEquals(5570, newYork.getDistance(london), DISTANCE_VALUE_DELTA);
+		Assert.assertEquals(5570.22387, newYork.getDistance(london), DISTANCE_VALUE_DELTA);
 	}
 
 	@Test
 	public void testDistanceBetweenCapetownAndLondon()
 	{
-		Coordinate capetown = new Coordinate();
-		capetown.longitude(18.424055);
-		capetown.latitude(-33.924869);
+		Coordinate capetown = getCapetownCoordinate();
+		Coordinate london = getLondonCoordinate();
 
-		Coordinate london = new Coordinate();
-		london.longitude(-0.1277583);
-		london.latitude(51.5073509);
+		Assert.assertEquals(9670.99055, capetown.getDistance(london), DISTANCE_VALUE_DELTA);
+	}
 
-		Assert.assertEquals(9670, capetown.getDistance(london), DISTANCE_VALUE_DELTA);
+	private Coordinate getNewYorkCoordinate() {
+		Coordinate newYork = new Coordinate();
+		newYork.longitude(-74.005941);
+		newYork.latitude(40.712784);
+		return newYork;
+	}
+
+	private Coordinate getLondonCoordinate() {
+		Coordinate newYork = new Coordinate();
+		newYork.longitude(-0.1277583);
+		newYork.latitude(51.5073509);
+		return newYork;
+	}
+
+	private Coordinate getCapetownCoordinate() {
+		Coordinate newYork = new Coordinate();
+		newYork.longitude(18.424055);
+		newYork.latitude(-33.924869);
+		return newYork;
 	}
 }
