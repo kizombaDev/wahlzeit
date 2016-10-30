@@ -35,7 +35,7 @@ public class Location  {
 	{
 		if(coordinate == null)
 		{
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("The parameter coordinate is null");
 		}
 
 		this.coordinate = coordinate;
@@ -47,5 +47,19 @@ public class Location  {
 	 */
 	public Coordinate getCoordinate() {
 		return coordinate;
+	}
+
+	/**
+	 * Calculates the distance between two locations.
+	 * @param location The second location
+	 * @return Returns the distance in km
+	 */
+	public double getDistance(Location location) {
+		if(location == null)
+		{
+			throw new IllegalArgumentException("The parameter location is null");
+		}
+
+		return coordinate.getDistance(location.getCoordinate());
 	}
 }

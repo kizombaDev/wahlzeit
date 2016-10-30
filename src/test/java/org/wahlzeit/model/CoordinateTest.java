@@ -48,6 +48,11 @@ public class CoordinateTest {
 		Assert.assertEquals(9670.99055, capetown.getDistance(london), DISTANCE_VALUE_DELTA);
 	}
 
+	@Test(expected = IllegalArgumentException.class)
+	public void testThrowIllegalArgumentExceptionIfTheCoordianteParameterIsNull(){
+		new Coordinate().getDistance(null);
+	}
+
 	private Coordinate getNewYorkCoordinate() {
 		Coordinate newYork = new Coordinate();
 		newYork.longitude(-74.005941);

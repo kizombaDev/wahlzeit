@@ -65,6 +65,11 @@ public class Coordinate {
 	 * @return Returns the distance in km
 	 */
 	public double getDistance(Coordinate coordinate) {
+		if(coordinate == null)
+		{
+			throw new IllegalArgumentException("The parameter coordinate is null");
+		}
+
 		double earthRadius = 6371;
 
 		double absoluteLongitudeDifferenceInRad = Math.toRadians(Math.abs(coordinate.longitude() - longitude()));

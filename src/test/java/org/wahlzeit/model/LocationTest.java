@@ -18,7 +18,12 @@ public class LocationTest {
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void testThrowExceptionIfCoordinateIsNull(){
+	public void testThrowIllegalArgumentExceptionIfCoordinateIsNull(){
 		new Location(null);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testThrowIllegalArgumentExceptionIfLocationParameterOfGetDistanceIsNull(){
+		new Location(new Coordinate()).getDistance(null);
 	}
 }
