@@ -223,4 +223,11 @@ public class ServiceMain extends ModelMain {
 		super.shutDown();
 	}
 
+	/**
+	 * Sets the isInProduction variable. Default is false
+	 * @param isInProduction
+	 */
+	public void setInProduction(boolean isInProduction) {
+		instance.isInProduction = isInProduction;
+	}
 }
