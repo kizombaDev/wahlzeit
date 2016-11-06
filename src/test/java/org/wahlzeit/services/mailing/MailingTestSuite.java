@@ -28,4 +28,5 @@ import org.junit.runners.Suite;
         EmailServiceTest.class
 })
 public class MailingTestSuite {
+    //nothing to do
 }

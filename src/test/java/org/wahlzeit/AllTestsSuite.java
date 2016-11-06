@@ -34,5 +34,6 @@ import org.wahlzeit.utils.UtilsTestSuite;
         ServicesTestSuite.class,
         UtilsTestSuite.class
 })
-public class WahlzeitTestSuite {
+public class AllTestsSuite {
+    //nothing to do
 }

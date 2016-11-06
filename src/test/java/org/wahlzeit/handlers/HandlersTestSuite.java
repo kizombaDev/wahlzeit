@@ -28,4 +28,5 @@ import org.junit.runners.Suite;
         TellFriendTest.class
 })
 public class HandlersTestSuite {
+    //nothing to do
 }

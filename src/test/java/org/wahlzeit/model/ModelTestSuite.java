@@ -40,4 +40,5 @@ import org.wahlzeit.model.persistence.PersistenceTestSuite;
         ValueTest.class
 })
 public class ModelTestSuite {
+    //nothing to do
 }

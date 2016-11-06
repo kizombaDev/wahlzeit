@@ -32,4 +32,5 @@ import org.wahlzeit.services.mailing.MailingTestSuite;
         LogBuilderTest.class
 })
 public class ServicesTestSuite {
+    //nothing to do
 }

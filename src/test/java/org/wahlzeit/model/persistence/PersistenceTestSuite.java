@@ -30,4 +30,5 @@ import org.junit.runners.Suite;
         GcsAdapterTest.class
 })
 public class PersistenceTestSuite {
+    //nothing to do
 }

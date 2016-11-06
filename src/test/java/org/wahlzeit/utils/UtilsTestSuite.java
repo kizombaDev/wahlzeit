@@ -29,4 +29,5 @@ import org.junit.runners.Suite;
         VersionTest.class
 })
 public class UtilsTestSuite {
+    //nothing to do
 }
