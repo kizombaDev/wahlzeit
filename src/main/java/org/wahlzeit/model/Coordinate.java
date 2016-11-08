@@ -76,8 +76,11 @@ public class Coordinate {
 		double firstLatitudeInRad = Math.toRadians(latitude());
 		double secondLatitudeInRad = Math.toRadians(coordinate.latitude());
 
-		double dividend = Math.sqrt(Math.pow(Math.cos(secondLatitudeInRad) * Math.sin(absoluteLongitudeDifferenceInRad), 2) + Math.pow(Math.cos(firstLatitudeInRad) * Math.sin(secondLatitudeInRad) - Math.sin(firstLatitudeInRad) * Math.cos(secondLatitudeInRad) * Math.cos(absoluteLongitudeDifferenceInRad), 2));
-		double divisor = Math.sin(firstLatitudeInRad) * Math.sin(secondLatitudeInRad) + Math.cos(firstLatitudeInRad) * Math.cos(secondLatitudeInRad) * Math.cos(absoluteLongitudeDifferenceInRad);
+		double dividend = Math.sqrt(Math.pow(Math.cos(secondLatitudeInRad) * Math.sin(absoluteLongitudeDifferenceInRad), 2)
+				+ Math.pow(Math.cos(firstLatitudeInRad) * Math.sin(secondLatitudeInRad) - Math.sin(firstLatitudeInRad) *
+				Math.cos(secondLatitudeInRad) * Math.cos(absoluteLongitudeDifferenceInRad), 2));
+		double divisor = Math.sin(firstLatitudeInRad) * Math.sin(secondLatitudeInRad) + Math.cos(firstLatitudeInRad) *
+				Math.cos(secondLatitudeInRad) * Math.cos(absoluteLongitudeDifferenceInRad);
 
 		return Math.atan(dividend / divisor) * earthRadius;
 	}

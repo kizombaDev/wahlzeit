@@ -49,7 +49,7 @@ public class CoordinateTest {
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void testThrowIllegalArgumentExceptionIfTheCoordianteParameterIsNull(){
+	public void testThrowIllegalArgumentExceptionIfTheCoordinateParameterIsNull(){
 		new Coordinate().getDistance(null);
 	}
 
