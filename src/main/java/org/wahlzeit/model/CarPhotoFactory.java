@@ -20,14 +20,36 @@
 
 package org.wahlzeit.model;
 
+import org.wahlzeit.services.LogBuilder;
+
+import java.util.logging.Logger;
+
 public class CarPhotoFactory extends PhotoFactory{
-    static {
-        setInstance(new CarPhotoFactory());
-    }
+
+    private static final Logger log = Logger.getLogger(CarPhotoFactory.class.getName());
+    private static CarPhotoFactory instance = null;
 
     protected CarPhotoFactory()
     {
         super();
+    }
+
+
+    public static synchronized PhotoFactory getInstance() {
+        if (instance == null) {
+            log.config(LogBuilder.createSystemMessage().addAction("setting generic CarPhotoFactory").toString());
+            setInstance(new CarPhotoFactory());
+        }
+
+        return instance;
+    }
+
+    protected static synchronized void setInstance(CarPhotoFactory charPhotoFactory) {
+        if (instance != null) {
+            throw new IllegalStateException("attempt to initialize CarPhotoFactory twice");
+        }
+
+        instance = charPhotoFactory;
     }
 
     /**

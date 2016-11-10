@@ -55,6 +55,4 @@ public class CarPhotoTest {
         carPhoto.setWeight(1234.12);
         Assert.assertEquals(1234.12, carPhoto.getWeight(), 0.001);
     }
-
-
 }

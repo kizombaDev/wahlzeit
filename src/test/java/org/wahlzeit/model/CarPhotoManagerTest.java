@@ -20,12 +20,33 @@
 
 package org.wahlzeit.model;
 
+import com.google.appengine.tools.development.testing.LocalBlobstoreServiceTestConfig;
+import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class CarPhotoManagerTest {
-    @Test
-    public void Test()
+
+    private static final LocalServiceTestHelper helper = new LocalServiceTestHelper(new LocalBlobstoreServiceTestConfig());
+
+    @Before
+    public void setUp()
     {
-        //todo
+        helper.setUp();
+    }
+
+    @After
+    public void tearDown()
+    {
+        helper.tearDown();
+    }
+
+    @Test
+    public void carPhotoManagerTest()
+    {
+        PhotoManager photoManager = new CarPhotoManager();
+        Assert.assertNotNull(photoManager);
     }
 }

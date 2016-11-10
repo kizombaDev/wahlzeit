@@ -31,7 +31,6 @@ public class CarPhotoFactoryTest {
 
     private static final  LocalServiceTestHelper helper = new LocalServiceTestHelper(new LocalBlobstoreServiceTestConfig());
 
-
     @Before
     public void setUp()
     {
@@ -58,5 +57,19 @@ public class CarPhotoFactoryTest {
     public void createPhotoWithIdContainsTheIdTest() {
         Photo photo = CarPhotoFactory.getInstance().createPhoto(new PhotoId(1));
         Assert.assertEquals(1, photo.getId().asInt());
+    }
+
+    @Test
+    public void getInstanceReturnsAlwaysTheSameReference()
+    {
+        Assert.assertSame(CarPhotoFactory.getInstance(), CarPhotoFactory.getInstance());
+    }
+
+    @Test(expected =  IllegalStateException.class)
+    public void callSetInstanceTwiceTrowIllegalStateExceptionTest()
+    {
+        CarPhotoFactory.getInstance();
+        CarPhotoFactory.setInstance(null);
+
     }
 }
