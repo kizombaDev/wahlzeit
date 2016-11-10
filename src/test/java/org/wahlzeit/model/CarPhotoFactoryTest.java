@@ -29,17 +29,15 @@ import org.junit.Test;
 
 public class CarPhotoFactoryTest {
 
-    private static final  LocalServiceTestHelper helper = new LocalServiceTestHelper(new LocalBlobstoreServiceTestConfig());
+    private static final LocalServiceTestHelper helper = new LocalServiceTestHelper(new LocalBlobstoreServiceTestConfig());
 
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         helper.setUp();
     }
 
     @After
-    public void tearDown()
-    {
+    public void tearDown() {
         helper.tearDown();
     }
 
@@ -60,14 +58,12 @@ public class CarPhotoFactoryTest {
     }
 
     @Test
-    public void getInstanceReturnsAlwaysTheSameReference()
-    {
+    public void getInstanceReturnsAlwaysTheSameReference() {
         Assert.assertSame(CarPhotoFactory.getInstance(), CarPhotoFactory.getInstance());
     }
 
-    @Test(expected =  IllegalStateException.class)
-    public void callSetInstanceTwiceTrowIllegalStateExceptionTest()
-    {
+    @Test(expected = IllegalStateException.class)
+    public void callSetInstanceTwiceTrowIllegalStateExceptionTest() {
         CarPhotoFactory.getInstance();
         CarPhotoFactory.setInstance(null);
 

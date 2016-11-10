@@ -24,13 +24,12 @@ import org.wahlzeit.services.LogBuilder;
 
 import java.util.logging.Logger;
 
-public class CarPhotoFactory extends PhotoFactory{
+public class CarPhotoFactory extends PhotoFactory {
 
     private static final Logger log = Logger.getLogger(CarPhotoFactory.class.getName());
     private static CarPhotoFactory instance = null;
 
-    protected CarPhotoFactory()
-    {
+    protected CarPhotoFactory() {
         super();
     }
 
@@ -69,6 +68,4 @@ public class CarPhotoFactory extends PhotoFactory{
     public Photo createPhoto(PhotoId id) {
         return new CarPhoto(id);
     }
-
-
 }

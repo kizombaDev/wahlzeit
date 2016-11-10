@@ -24,34 +24,31 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.awt.Color;
+import java.awt.*;
 
 public class CarPhotoTest {
 
     private CarPhoto carPhoto;
 
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         carPhoto = new CarPhoto();
     }
+
     @Test
-    public void fuelPropertyTest()
-    {
+    public void fuelPropertyTest() {
         carPhoto.setFuel(Fuel.petrol);
         Assert.assertEquals(Fuel.petrol, carPhoto.getFuel());
     }
 
     @Test
-    public void colorPropertyTest()
-    {
+    public void colorPropertyTest() {
         carPhoto.setColor(Color.black);
         Assert.assertEquals(Color.black, carPhoto.getColor());
     }
 
     @Test
-    public void weightPropertyTest()
-    {
+    public void weightPropertyTest() {
         carPhoto.setWeight(1234.12);
         Assert.assertEquals(1234.12, carPhoto.getWeight(), 0.001);
     }

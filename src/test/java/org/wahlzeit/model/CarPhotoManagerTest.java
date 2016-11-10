@@ -32,20 +32,17 @@ public class CarPhotoManagerTest {
     private static final LocalServiceTestHelper helper = new LocalServiceTestHelper(new LocalBlobstoreServiceTestConfig());
 
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         helper.setUp();
     }
 
     @After
-    public void tearDown()
-    {
+    public void tearDown() {
         helper.tearDown();
     }
 
     @Test
-    public void carPhotoManagerTest()
-    {
+    public void carPhotoManagerTest() {
         PhotoManager photoManager = new CarPhotoManager();
         Assert.assertNotNull(photoManager);
     }

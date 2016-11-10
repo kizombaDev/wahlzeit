@@ -66,6 +66,4 @@ public class CarPhoto extends Photo {
     public void setFuel(Fuel fuel) {
         this.fuel = fuel;
     }
-
-
 }
