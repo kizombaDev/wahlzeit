@@ -31,6 +31,7 @@ public class CarPhoto extends Photo {
 
     /**
      *
+     * @methodtype constructor
      */
     public CarPhoto() {
     }
@@ -43,26 +44,56 @@ public class CarPhoto extends Photo {
         super(myId);
     }
 
+    /**
+     *
+     * @return
+     * @methodtype get
+     */
     public double getWeight() {
         return weight;
     }
 
+    /**
+     *
+     * @return
+     * @methodtype set
+     */
     public void setWeight(double weight) {
         this.weight = weight;
     }
 
+    /**
+     *
+     * @return
+     * @methodtype get
+     */
     public Color getColor() {
         return color;
     }
 
+    /**
+     *
+     * @return
+     * @methodtype set
+     */
     public void setColor(Color color) {
         this.color = color;
     }
 
+    /**
+     *
+     * @return
+     * @methodtype get
+     */
     public Fuel getFuel() {
         return fuel;
     }
 
+    /**
+     *
+     * @return
+     * @methodtype set
+     */
     public void setFuel(Fuel fuel) {
         this.fuel = fuel;
     }

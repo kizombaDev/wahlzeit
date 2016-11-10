@@ -54,7 +54,6 @@ public abstract class AbstractAdapterTest {
 
 
 	@Test
-	@Ignore
 	public void testWriteImage() {
 		try {
 			imageStorage.writeImage(smallTestImage, "blub", 1);
@@ -71,7 +70,6 @@ public abstract class AbstractAdapterTest {
 
 
 	@Test
-	@Ignore
 	public void testReadImage() {
 		try {
 			imageStorage.writeImage(smallTestImage, "blub", 1);
@@ -108,7 +106,6 @@ public abstract class AbstractAdapterTest {
 	}
 
 	@Test
-	@Ignore
 	public void testImageExistence() {
 		boolean exists;
 

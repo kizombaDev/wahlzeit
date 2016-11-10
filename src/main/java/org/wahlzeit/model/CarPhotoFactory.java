@@ -34,6 +34,11 @@ public class CarPhotoFactory extends PhotoFactory {
     }
 
 
+    /**
+     *
+     * @return
+     * @methodtype get
+     */
     public static synchronized PhotoFactory getInstance() {
         if (instance == null) {
             log.config(LogBuilder.createSystemMessage().addAction("setting generic CarPhotoFactory").toString());
@@ -43,6 +48,11 @@ public class CarPhotoFactory extends PhotoFactory {
         return instance;
     }
 
+    /**
+     *
+     * @return
+     * @methodtype set
+     */
     protected static synchronized void setInstance(CarPhotoFactory charPhotoFactory) {
         if (instance != null) {
             throw new IllegalStateException("attempt to initialize CarPhotoFactory twice");
