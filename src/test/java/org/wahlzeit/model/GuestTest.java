@@ -8,6 +8,8 @@ import org.junit.rules.RuleChain;
 import org.wahlzeit.testEnvironmentProvider.LocalDatastoreServiceTestConfigProvider;
 import org.wahlzeit.testEnvironmentProvider.RegisteredOfyEnvironmentProvider;
 
+import java.util.Random;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -15,6 +17,8 @@ import static org.junit.Assert.assertNotNull;
  * Test class for {@link Guest}.
  */
 public class GuestTest {
+
+	private static Random randomGenerator = new Random();
 
 	@ClassRule
 	public static RuleChain ruleChain = RuleChain.
@@ -31,7 +35,7 @@ public class GuestTest {
 		ObjectifyService.run(new Work<Void>() {
 			@Override
 			public Void run() {
-				new User("1337", "han", "star@wa.rs");
+				new User(String.valueOf(randomGenerator.nextInt()), "han" + randomGenerator.nextInt(), "star@wa.rs");
 				return null;
 			}
 		});
