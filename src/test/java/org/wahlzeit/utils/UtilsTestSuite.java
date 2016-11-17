@@ -25,7 +25,6 @@ import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        AssertUtil.class,
         StringUtilTest.class,
         VersionTest.class
 })
