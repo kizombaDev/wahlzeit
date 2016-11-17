@@ -18,17 +18,16 @@
  * <http://www.gnu.org/licenses/>.
  */
 
-package org.wahlzeit.utils;
+package org.wahlzeit.model.coordinate;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        AssertUtil.class,
-        StringUtilTest.class,
-        VersionTest.class
+        CartesianCoordinateTest.class,
+        SphericCoordinateTest.class
 })
-public class UtilsTestSuite {
+public class CoordinateTestSuite {
     //nothing to do
 }

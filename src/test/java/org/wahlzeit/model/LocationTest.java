@@ -2,6 +2,8 @@ package org.wahlzeit.model;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.wahlzeit.model.coordinate.Coordinate;
+import org.wahlzeit.model.coordinate.SphericCoordinate;
 
 /**
  * Test class for {@link Location}.
@@ -10,11 +12,11 @@ public class LocationTest {
 
 	@Test
 	public void testLocatioinRequireAlwaysACoordinate() {
-		Coordinate coordinate = new Coordinate();
-		Location location = new Location(coordinate);
-		Coordinate actualCoordinate = location.getCoordinate();
+		SphericCoordinate sphericCoordinate = new SphericCoordinate(0,0,0);
+		Location location = new Location(sphericCoordinate);
+		Coordinate actualSphericCoordinate = location.getSphericCoordinate();
 
-		Assert.assertSame(coordinate, actualCoordinate);
+		Assert.assertSame(sphericCoordinate, actualSphericCoordinate);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -24,6 +26,6 @@ public class LocationTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testThrowIllegalArgumentExceptionIfLocationParameterOfGetDistanceIsNull(){
-		new Location(new Coordinate()).getDistance(null);
+		new Location(new SphericCoordinate(0,0,0)).getDistance(null);
 	}
 }

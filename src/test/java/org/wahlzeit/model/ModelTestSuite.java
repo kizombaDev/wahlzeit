@@ -22,6 +22,8 @@ package org.wahlzeit.model;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
+import org.wahlzeit.model.coordinate.CoordinateTestSuite;
+import org.wahlzeit.model.coordinate.SphericCoordinateTest;
 import org.wahlzeit.model.persistence.PersistenceTestSuite;
 
 @RunWith(Suite.class)
@@ -31,7 +33,7 @@ import org.wahlzeit.model.persistence.PersistenceTestSuite;
         CarPhotoFactoryTest.class,
         CarPhotoManagerTest.class,
         CarPhotoTest.class,
-        CoordinateTest.class,
+        CoordinateTestSuite.class,
         FlagReasonTest.class,
         GenderTest.class,
         GuestTest.class,

@@ -20,6 +20,8 @@
 
 package org.wahlzeit.model;
 
+import org.wahlzeit.model.coordinate.Coordinate;
+
 /**
  * Represents the location of an object, for example the {@link Photo}
  */
@@ -35,7 +37,7 @@ public class Location  {
 	{
 		if(coordinate == null)
 		{
-			throw new IllegalArgumentException("The parameter coordinate is null");
+			throw new IllegalArgumentException("The parameter sphericCoordinate is null");
 		}
 
 		this.coordinate = coordinate;
@@ -45,7 +47,7 @@ public class Location  {
 	 * Returns the coordinate of the location
 	 * @return The coordinate of the location
 	 */
-	public Coordinate getCoordinate() {
+	public Coordinate getSphericCoordinate() {
 		return coordinate;
 	}
 
@@ -60,6 +62,6 @@ public class Location  {
 			throw new IllegalArgumentException("The parameter location is null");
 		}
 
-		return coordinate.getDistance(location.getCoordinate());
+		return coordinate.getDistance(location.getSphericCoordinate());
 	}
 }
