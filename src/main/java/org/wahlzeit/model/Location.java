@@ -20,11 +20,14 @@
 
 package org.wahlzeit.model;
 
+import com.googlecode.objectify.annotation.Ignore;
+
 /**
  * Represents the location of an object, for example the {@link Photo}
  */
 public class Location  {
 
+	@Ignore
 	private Coordinate coordinate;
 
 	/**

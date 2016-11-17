@@ -18,7 +18,7 @@ public class PhotoTest {
 
 	@Test
 	public void testPhotoLocation() {
-		Location location = new Location(new Coordinate());
+		Location location = new Location(new CartesianCoordinate(1,1,1));
 		photo.setLocation(location);
 
 		Assert.assertSame(location, photo.getLocation());

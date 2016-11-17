@@ -10,7 +10,7 @@ public class LocationTest {
 
 	@Test
 	public void testLocatioinRequireAlwaysACoordinate() {
-		Coordinate coordinate = new Coordinate();
+		Coordinate coordinate = new CartesianCoordinate(1,1,1);
 		Location location = new Location(coordinate);
 		Coordinate actualCoordinate = location.getCoordinate();
 
@@ -24,6 +24,6 @@ public class LocationTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testThrowIllegalArgumentExceptionIfLocationParameterOfGetDistanceIsNull(){
-		new Location(new Coordinate()).getDistance(null);
+		new Location(new CartesianCoordinate(1,1,1)).getDistance(null);
 	}
 }
