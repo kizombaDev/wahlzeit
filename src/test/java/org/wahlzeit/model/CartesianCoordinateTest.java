@@ -33,18 +33,16 @@ public class CartesianCoordinateTest {
     }
 
     @Test
-    public void getDistanceBetweenTwoPointsWithTheSameLocation()
-    {
-        CartesianCoordinate first = new CartesianCoordinate(1,2,3);
-        CartesianCoordinate second = new CartesianCoordinate(1,2,3);
-        Assert.assertEquals(0,first.getDistance(second), DOUBLE_TEST_DELTA);
+    public void getDistanceBetweenTwoPointsWithTheSameLocation() {
+        CartesianCoordinate first = new CartesianCoordinate(1, 2, 3);
+        CartesianCoordinate second = new CartesianCoordinate(1, 2, 3);
+        Assert.assertEquals(0, first.getDistance(second), DOUBLE_TEST_DELTA);
     }
 
     @Test
-    public void getDistanceWithZeroPoint()
-    {
-        CartesianCoordinate zeroPoint = new CartesianCoordinate(0,0,0);
-        CartesianCoordinate secondPoint  = new CartesianCoordinate(1,0,0);
+    public void getDistanceWithZeroPoint() {
+        CartesianCoordinate zeroPoint = new CartesianCoordinate(0, 0, 0);
+        CartesianCoordinate secondPoint = new CartesianCoordinate(1, 0, 0);
 
         Assert.assertEquals(1, zeroPoint.getDistance(secondPoint), DOUBLE_TEST_DELTA);
     }
