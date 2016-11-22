@@ -44,10 +44,9 @@ public class SphericCoordinateTest {
     @Test
     public void testCartesionCoordinate() {
         SphericCoordinate capetown = getCapetownCoordinate();
-        CartesianCoordinate captownAsCartesion = capetown.asCartesianCoordinate();
-        Assert.assertEquals(-3373.436487, captownAsCartesion.getX(), DISTANCE_VALUE_DELTA);
-        Assert.assertEquals(-1123.766205, captownAsCartesion.getY(), DISTANCE_VALUE_DELTA);
-        Assert.assertEquals(5286.465434, captownAsCartesion.getZ(), DISTANCE_VALUE_DELTA);
+        Assert.assertEquals(-3373.436487, capetown.getX(), DISTANCE_VALUE_DELTA);
+        Assert.assertEquals(-1123.766205, capetown.getY(), DISTANCE_VALUE_DELTA);
+        Assert.assertEquals(5286.465434, capetown.getZ(), DISTANCE_VALUE_DELTA);
     }
 
     private SphericCoordinate getNewYorkCoordinate() {

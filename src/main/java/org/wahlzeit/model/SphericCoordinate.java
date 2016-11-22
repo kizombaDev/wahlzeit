@@ -20,12 +20,10 @@
 
 package org.wahlzeit.model;
 
-import org.wahlzeit.utils.AssertUtil;
-
 /**
  * Class that represents a coordinate consisting of latitude, longitude and radius
  */
-public class SphericCoordinate implements Coordinate {
+public class SphericCoordinate extends AbstractCoordinate {
     public static final double EARTH_RADIUS_IN_KM = 6371;
     private double latitude;
     private double longitude;
@@ -57,18 +55,27 @@ public class SphericCoordinate implements Coordinate {
     }
 
 
-    /**
-     * Calculates the distance between two coordinates.
-     *
-     * @param coordinate The second sphericCoordinate
-     * @return Returns the distance in km
-     */
     @Override
-    public double getDistance(Coordinate coordinate) {
-        AssertUtil.assertIsParameterNull(coordinate, "coordinate");
+    protected double getX() {
+        return getRadius() * Math.sin(getLatitudeInRadius()) * Math.cos(getLongitudeInRadius());
+    }
 
-        CartesianCoordinate cartesianCoordinate = this.asCartesianCoordinate();
-        return cartesianCoordinate.getDistance(coordinate);
+    @Override
+    protected double getY() {
+        return getRadius() * Math.sin(getLatitudeInRadius()) * Math.sin(getLongitudeInRadius());
+    }
+
+    @Override
+    protected double getZ() {
+        return getRadius() * Math.cos(getLatitudeInRadius());
+    }
+
+    private double getLatitudeInRadius() {
+        return Math.toRadians(getLatitude());
+    }
+
+    private double getLongitudeInRadius() {
+        return Math.toRadians(getLongitude());
     }
 
     /**
@@ -78,21 +85,5 @@ public class SphericCoordinate implements Coordinate {
      */
     public double getRadius() {
         return radius;
-    }
-
-    /**
-     * Converts the SphericCoordinate to a new object with cartesian coordinates
-     *
-     * @return
-     */
-    public CartesianCoordinate asCartesianCoordinate() {
-
-        double latitudeInRadians = Math.toRadians(getLatitude());
-        double longitudeInRadians = Math.toRadians(getLongitude());
-
-        return new CartesianCoordinate(
-                radius * Math.sin(latitudeInRadians) * Math.cos(longitudeInRadians),
-                radius * Math.sin(latitudeInRadians) * Math.sin(longitudeInRadians),
-                radius * Math.cos(latitudeInRadians));
     }
 }

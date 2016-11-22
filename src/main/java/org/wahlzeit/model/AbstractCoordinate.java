@@ -1,0 +1,53 @@
+package org.wahlzeit.model;
+
+import org.wahlzeit.utils.AssertUtil;
+
+public abstract class AbstractCoordinate implements Coordinate {
+    /**
+     * Calculates the distance between two coordinates.
+     *
+     * @param coordinate The second coordinate
+     * @return Returns the distance in km
+     */
+    @Override
+    public double getDistance(Coordinate coordinate) {
+        assertAbstractCoordinateType(coordinate);
+        AbstractCoordinate abstractCoordinate = (AbstractCoordinate) coordinate;
+        return doGetDistance(abstractCoordinate);
+    }
+
+    @Override
+    public boolean isEqual(Coordinate coordinate) {
+        if (coordinate == null) {
+            return false;
+        }
+
+        assertAbstractCoordinateType(coordinate);
+
+        AbstractCoordinate abstractCoordinate = (AbstractCoordinate) coordinate;
+
+        //todo double conversion
+        return abstractCoordinate.getX() == getX() && abstractCoordinate.getY() == getY() && abstractCoordinate.getZ() == getZ();
+    }
+
+    private void assertAbstractCoordinateType(Coordinate coordinate) {
+        if (coordinate instanceof AbstractCoordinate == false) {
+            throw new IllegalStateException("Unknown coordinate type");
+        }
+    }
+
+    private double doGetDistance(AbstractCoordinate coordinate) {
+        AssertUtil.assertIsParameterNull(coordinate, "coordinate");
+
+        double deltaX = getX() - coordinate.getX();
+        double deltaY = getY() - coordinate.getY();
+        double deltaZ = getZ() - coordinate.getZ();
+        return Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ);
+    }
+
+    protected abstract double getX();
+
+    protected abstract double getY();
+
+    protected abstract double getZ();
+}
