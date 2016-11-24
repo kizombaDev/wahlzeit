@@ -1,6 +1,7 @@
 package org.wahlzeit.model;
 
 import org.wahlzeit.utils.AssertUtil;
+import org.wahlzeit.utils.DoubleUtil;
 
 public abstract class AbstractCoordinate implements Coordinate {
     /**
@@ -16,18 +17,23 @@ public abstract class AbstractCoordinate implements Coordinate {
         return doGetDistance(abstractCoordinate);
     }
 
+    //todo isqual tests
     @Override
     public boolean isEqual(Coordinate coordinate) {
         if (coordinate == null) {
             return false;
         }
 
+        if(this == coordinate)
+        {
+            return true;
+        }
+
         assertAbstractCoordinateType(coordinate);
 
         AbstractCoordinate abstractCoordinate = (AbstractCoordinate) coordinate;
 
-        //todo double conversion
-        return abstractCoordinate.getX() == getX() && abstractCoordinate.getY() == getY() && abstractCoordinate.getZ() == getZ();
+        return DoubleUtil.equals(abstractCoordinate.getX(), getX()) && DoubleUtil.equals(abstractCoordinate.getY(), getY()) && DoubleUtil.equals(abstractCoordinate.getZ(), getZ());
     }
 
     private void assertAbstractCoordinateType(Coordinate coordinate) {
