@@ -24,8 +24,7 @@ public abstract class AbstractCoordinate implements Coordinate {
             return false;
         }
 
-        if(this == coordinate)
-        {
+        if (this == coordinate) {
             return true;
         }
 

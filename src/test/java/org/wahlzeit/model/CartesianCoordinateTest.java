@@ -1,6 +1,5 @@
 package org.wahlzeit.model;
 
-import com.google.apphosting.api.ApiProxy;
 import org.junit.Assert;
 import org.junit.Test;
 
