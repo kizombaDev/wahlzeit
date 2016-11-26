@@ -1,8 +1,11 @@
 package org.wahlzeit.model;
 
+import com.googlecode.objectify.annotation.Serialize;
+
 /**
  * Class that represents a coordinate consisting of a latitude and a longitude
  */
+@Serialize
 public interface Coordinate {
 
     /**
