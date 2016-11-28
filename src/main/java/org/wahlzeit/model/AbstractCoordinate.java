@@ -17,7 +17,6 @@ public abstract class AbstractCoordinate implements Coordinate {
         return doGetDistance(abstractCoordinate);
     }
 
-    //todo isqual tests
     @Override
     public boolean isEqual(Coordinate coordinate) {
         if (coordinate == null) {
@@ -42,7 +41,7 @@ public abstract class AbstractCoordinate implements Coordinate {
     }
 
     private double doGetDistance(AbstractCoordinate coordinate) {
-        AssertUtil.assertIsParameterNull(coordinate, "coordinate");
+        AssertUtil.assertIsParameterNotNull(coordinate, "coordinate");
 
         double deltaX = getX() - coordinate.getX();
         double deltaY = getY() - coordinate.getY();

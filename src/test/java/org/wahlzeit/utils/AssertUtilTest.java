@@ -6,12 +6,12 @@ public class AssertUtilTest {
     @Test(expected =  IllegalArgumentException.class)
     public void PassNullToAssertIsParameterNull()
     {
-        AssertUtil.assertIsParameterNull(null, "");
+        AssertUtil.assertIsParameterNotNull(null, "");
     }
 
     @Test
     public void PassNotNullToAssertIsParameterNull()
     {
-        AssertUtil.assertIsParameterNull("", "");
+        AssertUtil.assertIsParameterNotNull("", "");
     }
 }
