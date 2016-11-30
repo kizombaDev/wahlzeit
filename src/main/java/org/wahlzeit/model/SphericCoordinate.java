@@ -30,20 +30,58 @@ public class SphericCoordinate extends AbstractCoordinate {
     private double radius;
 
     public SphericCoordinate(double latitude, double longitude, double radius) {
+        assertLatitude(latitude);
+        assertLongitude(longitude);
+        assertRadius(radius);
+
         this.latitude = latitude;
         this.longitude = longitude;
         this.radius = radius;
     }
 
     /**
-     * Gets the longitude in degrees
+     * @param radius
+     * @methodtype assert
+     */
+    private void assertRadius(double radius) {
+        assert radius >= 0 : "A negative radius is not supported";
+    }
+
+    /**
+     * @param longitude
+     * @methodtype assert
+     */
+    private void assertLongitude(double longitude) {
+        assert longitude <= 180.0 && longitude > -180.0 : "longitude must be equal to +180 or greater than -180 and smaller degrees";
+    }
+
+    /**
+     * @param latitude
+     * @methodtype assert
+     */
+    private void assertLatitude(double latitude) {
+        assert Math.abs(latitude) <= 90.0 : "latitude must be between -90 and +90 degrees";
+    }
+
+    /**
+     * Gets the latitude in degrees
      *
-     * @return Longitude in degrees
+     * @return latitude in degrees
      */
     public double getLatitude() {
         return latitude;
     }
 
+    /**
+     * Sets the latitude in degrees
+     *
+     * @param latitude
+     */
+    public void setLatitude(double latitude) {
+        assertLatitude(latitude);
+        this.latitude = latitude;
+        assertClassInvariants();
+    }
 
     /**
      * Gets the longitude in degrees
@@ -54,6 +92,16 @@ public class SphericCoordinate extends AbstractCoordinate {
         return longitude;
     }
 
+    /**
+     * Sets the longitude in degrees
+     *
+     * @param longitude
+     */
+    public void setLongitude(double longitude) {
+        assertLongitude(longitude);
+        this.longitude = longitude;
+        assertClassInvariants();
+    }
 
     @Override
     protected double getX() {
@@ -68,6 +116,13 @@ public class SphericCoordinate extends AbstractCoordinate {
     @Override
     protected double getZ() {
         return getRadius() * Math.cos(getLatitudeInRadius());
+    }
+
+    @Override
+    protected void assertClassInvariants() {
+        assertLatitude(getLatitude());
+        assertLatitude(getLongitude());
+        assertLatitude(getRadius());
     }
 
     private double getLatitudeInRadius() {
@@ -85,5 +140,11 @@ public class SphericCoordinate extends AbstractCoordinate {
      */
     public double getRadius() {
         return radius;
+    }
+
+    public void setRadius(double radius) {
+        assertRadius(radius);
+        this.radius = radius;
+        assertClassInvariants();
     }
 }

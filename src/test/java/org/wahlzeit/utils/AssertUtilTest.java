@@ -4,14 +4,14 @@ import org.junit.Test;
 
 public class AssertUtilTest {
     @Test(expected =  IllegalArgumentException.class)
-    public void PassNullToAssertIsParameterNull()
+    public void passNullToAssertIsParameterNull()
     {
-        AssertUtil.assertIsParameterNotNull(null, "");
+        AssertUtil.assertParameterIsNotNull(null, "");
     }
 
     @Test
-    public void PassNotNullToAssertIsParameterNull()
+    public void passNotNullToAssertIsParameterNull()
     {
-        AssertUtil.assertIsParameterNotNull("", "");
+        AssertUtil.assertParameterIsNotNull("", "");
     }
 }

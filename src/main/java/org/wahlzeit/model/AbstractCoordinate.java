@@ -12,13 +12,17 @@ public abstract class AbstractCoordinate implements Coordinate {
      */
     @Override
     public double getDistance(Coordinate coordinate) {
+        AssertUtil.assertParameterIsNotNull(coordinate, "coordinate");
         assertAbstractCoordinateType(coordinate);
+        assertClassInvariants();
+
         AbstractCoordinate abstractCoordinate = (AbstractCoordinate) coordinate;
         return doGetDistance(abstractCoordinate);
     }
 
     @Override
     public boolean isEqual(Coordinate coordinate) {
+
         if (coordinate == null) {
             return false;
         }
@@ -27,6 +31,7 @@ public abstract class AbstractCoordinate implements Coordinate {
             return true;
         }
 
+        assertClassInvariants();
         assertAbstractCoordinateType(coordinate);
 
         AbstractCoordinate abstractCoordinate = (AbstractCoordinate) coordinate;
@@ -41,12 +46,15 @@ public abstract class AbstractCoordinate implements Coordinate {
     }
 
     private double doGetDistance(AbstractCoordinate coordinate) {
-        AssertUtil.assertIsParameterNotNull(coordinate, "coordinate");
-
         double deltaX = getX() - coordinate.getX();
         double deltaY = getY() - coordinate.getY();
         double deltaZ = getZ() - coordinate.getZ();
-        return Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ);
+
+        double distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ);
+
+        assert distance >= 0 : "A negative distance is an invalid distance";
+
+        return distance;
     }
 
     protected abstract double getX();
@@ -54,4 +62,6 @@ public abstract class AbstractCoordinate implements Coordinate {
     protected abstract double getY();
 
     protected abstract double getZ();
+
+    protected abstract void assertClassInvariants();
 }

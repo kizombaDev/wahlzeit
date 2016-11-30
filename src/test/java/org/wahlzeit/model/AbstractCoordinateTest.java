@@ -61,4 +61,6 @@ public class AbstractCoordinateTest {
     public void isEqualWithTheSameCoordinate() {
         Assert.assertTrue(oneTwoThreeCoordinate.isEqual(oneTwoThreeCoordinate));
     }
+
+    //todo marcel add newyork london capetown tests
 }

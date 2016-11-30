@@ -27,4 +27,8 @@ public class SphericCoordinateTest {
     private SphericCoordinate getNewYorkCoordinate() {
         return new SphericCoordinate(40.712784, -74.005941, SphericCoordinate.EARTH_RADIUS_IN_KM);
     }
+
+    //todo marcel setter tests
+
+    //todo marcel assert tests
 }
