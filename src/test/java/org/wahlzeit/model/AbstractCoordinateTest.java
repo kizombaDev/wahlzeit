@@ -18,7 +18,7 @@ public class AbstractCoordinateTest {
     private AbstractCoordinate oneTwoThreeCoordinate;
     private AbstractCoordinate fourFiveSixCoordinate;
     private AbstractCoordinate newYorkCoordinate;
-    private AbstractCoordinate londonCoordiante;
+    private AbstractCoordinate londonCoordinate;
     private AbstractCoordinate capetownCoordinate;
 
     private AbstractCoordinate createAbstractCoordinate(double x, double y, double z) {
@@ -37,7 +37,7 @@ public class AbstractCoordinateTest {
         fourFiveSixCoordinate = createAbstractCoordinate(4, 5, 6);
 
         newYorkCoordinate = createAbstractCoordinate(1145.02, -3994.73, 4829.14);
-        londonCoordiante = createAbstractCoordinate(4986.49, -11.11891530413514, 3965.40);
+        londonCoordinate = createAbstractCoordinate(4986.49, -11.11891530413514, 3965.40);
         capetownCoordinate = createAbstractCoordinate(-3373.43, -1123.76, 5286.46);
     }
 
@@ -80,7 +80,7 @@ public class AbstractCoordinateTest {
 
     @Test
     public void getDistanceBetweenNewYorkAndLondon() {
-        Assert.assertEquals(5601.07988, newYorkCoordinate.getDistance(londonCoordiante), DOUBLE_TEST_DELTA);
+        Assert.assertEquals(5601.07988, newYorkCoordinate.getDistance(londonCoordinate), DOUBLE_TEST_DELTA);
     }
 
     @Test
@@ -90,6 +90,6 @@ public class AbstractCoordinateTest {
 
     @Test
     public void getDistanceBetweenCapetownAndLondon() {
-        Assert.assertEquals(8536.47656, capetownCoordinate.getDistance(londonCoordiante), DOUBLE_TEST_DELTA);
+        Assert.assertEquals(8536.47656, capetownCoordinate.getDistance(londonCoordinate), DOUBLE_TEST_DELTA);
     }
 }
