@@ -121,8 +121,8 @@ public class SphericCoordinate extends AbstractCoordinate {
     @Override
     protected void assertClassInvariants() {
         assertLatitude(getLatitude());
-        assertLatitude(getLongitude());
-        assertLatitude(getRadius());
+        assertLongitude(getLongitude());
+        assertRadius(getRadius());
     }
 
     private double getLatitudeInRadius() {
