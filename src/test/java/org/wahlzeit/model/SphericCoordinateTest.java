@@ -34,7 +34,6 @@ public class SphericCoordinateTest {
         Assert.assertEquals(SphericCoordinate.EARTH_RADIUS_IN_KM, newYorkCoordinate.getRadius(), DEGREE_VALUE_DELTA);
     }
 
-
     @Test
     public void testSetLatitude() {
         emptyCoordinate.setLatitude(42);
