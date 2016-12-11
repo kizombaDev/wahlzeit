@@ -21,6 +21,9 @@
 package org.wahlzeit.model;
 
 
+import org.wahlzeit.exceptions.NullArgumentException;
+import org.wahlzeit.utils.AssertUtil;
+
 import java.awt.*;
 
 public class CarPhoto extends Photo {
@@ -42,6 +45,10 @@ public class CarPhoto extends Photo {
      */
     public CarPhoto(PhotoId myId) {
         super(myId);
+
+        if (myId == null) {
+            throw new NullArgumentException("myId");
+        }
     }
 
     /**
@@ -77,6 +84,7 @@ public class CarPhoto extends Photo {
      * @methodtype set
      */
     public void setColor(Color color) {
+        AssertUtil.assertParameterIsNotNull(color, "color");
         this.color = color;
     }
 
@@ -95,6 +103,7 @@ public class CarPhoto extends Photo {
      * @methodtype set
      */
     public void setFuel(Fuel fuel) {
+        AssertUtil.assertParameterIsNotNull(fuel, "fuel");
         this.fuel = fuel;
     }
 }

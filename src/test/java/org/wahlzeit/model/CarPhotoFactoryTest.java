@@ -26,6 +26,7 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.wahlzeit.exceptions.NullArgumentException;
 
 public class CarPhotoFactoryTest {
 
@@ -66,6 +67,12 @@ public class CarPhotoFactoryTest {
     public void callSetInstanceTwiceTrowIllegalStateExceptionTest() {
         CarPhotoFactory.getInstance();
         CarPhotoFactory.setInstance(null);
+
+    }
+
+    @Test(expected = NullArgumentException.class)
+    public void passNullToCreatePhotoTest() {
+        CarPhotoFactory.getInstance().createPhoto(null);
 
     }
 }

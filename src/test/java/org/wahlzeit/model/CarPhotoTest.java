@@ -23,6 +23,7 @@ package org.wahlzeit.model;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.wahlzeit.exceptions.NullArgumentException;
 
 import java.awt.*;
 
@@ -51,5 +52,20 @@ public class CarPhotoTest {
     public void weightPropertyTest() {
         carPhoto.setWeight(1234.12);
         Assert.assertEquals(1234.12, carPhoto.getWeight(), 0.001);
+    }
+
+    @Test(expected = NullArgumentException.class)
+    public void passNullToSetColorTest() {
+        carPhoto.setColor(null);
+    }
+
+    @Test(expected = NullArgumentException.class)
+    public void passNullToSetFuelTest() {
+        carPhoto.setFuel(null);
+    }
+
+    @Test(expected = NullArgumentException.class)
+    public void passNullToConstructorTest() {
+        new CarPhoto(null);
     }
 }

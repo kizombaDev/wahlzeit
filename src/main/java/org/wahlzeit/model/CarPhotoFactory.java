@@ -21,6 +21,7 @@
 package org.wahlzeit.model;
 
 import org.wahlzeit.services.LogBuilder;
+import org.wahlzeit.utils.AssertUtil;
 
 import java.util.logging.Logger;
 
@@ -76,6 +77,7 @@ public class CarPhotoFactory extends PhotoFactory {
      */
     @Override
     public Photo createPhoto(PhotoId id) {
+        AssertUtil.assertParameterIsNotNull(id, "id");
         return new CarPhoto(id);
     }
 }
