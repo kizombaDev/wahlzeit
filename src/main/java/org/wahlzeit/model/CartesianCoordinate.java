@@ -10,6 +10,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
         this.x = x;
         this.y = y;
         this.z = z;
+        assertClassInvariants();
     }
 
     public double getX() {
@@ -28,6 +29,13 @@ public class CartesianCoordinate extends AbstractCoordinate {
 
     @Override
     protected void assertClassInvariants() {
-        //nothing to do here
+        assertIsValidDoubleRange(getX());
+        assertIsValidDoubleRange(getY());
+        assertIsValidDoubleRange(getZ());
+    }
+
+    private void assertIsValidDoubleRange(double value) throws IllegalArgumentException {
+        if (Double.isInfinite(value) || Double.isNaN(value))
+            throw new IllegalArgumentException("Double value is not valid" + value);
     }
 }
