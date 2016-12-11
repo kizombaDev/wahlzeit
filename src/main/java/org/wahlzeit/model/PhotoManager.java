@@ -23,6 +23,7 @@ package org.wahlzeit.model;
 import com.google.appengine.api.images.Image;
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.Work;
+import org.wahlzeit.exceptions.PhotoComponentException;
 import org.wahlzeit.model.persistence.ImageStorage;
 import org.wahlzeit.services.LogBuilder;
 import org.wahlzeit.services.ObjectManager;
@@ -30,14 +31,7 @@ import org.wahlzeit.services.Persistent;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.logging.Logger;
 
 /**
@@ -65,8 +59,8 @@ public class PhotoManager extends ObjectManager {
 	/**
 	 *
 	 */
-	public PhotoManager() {
-		photoTagCollector = PhotoFactory.getInstance().createPhotoTagCollector();
+    public PhotoManager() {
+        photoTagCollector = PhotoFactory.getInstance().createPhotoTagCollector();
 	}
 
 	/**
@@ -79,29 +73,29 @@ public class PhotoManager extends ObjectManager {
 	/**
 	 *
 	 */
-	public final boolean hasPhoto(String id) {
-		return hasPhoto(PhotoId.getIdFromString(id));
+    public final boolean hasPhoto(String id) {
+        return hasPhoto(PhotoId.getIdFromString(id));
 	}
 
 	/**
 	 *
 	 */
-	public final boolean hasPhoto(PhotoId id) {
-		return getPhoto(id) != null;
+    public final boolean hasPhoto(PhotoId id) {
+        return getPhoto(id) != null;
 	}
 
 	/**
 	 *
 	 */
-	public final Photo getPhoto(PhotoId id) {
-		return instance.getPhotoFromId(id);
+    public final Photo getPhoto(PhotoId id) {
+        return instance.getPhotoFromId(id);
 	}
 
 	/**
 	 *
 	 */
-	public Photo getPhotoFromId(PhotoId id) {
-		if (id == null) {
+    public Photo getPhotoFromId(PhotoId id) {
+        if (id == null) {
 			return null;
 		}
 
@@ -136,8 +130,8 @@ public class PhotoManager extends ObjectManager {
 	/**
 	 * @methodtype get
 	 */
-	public final Photo getPhoto(String id) {
-		return getPhoto(PhotoId.getIdFromString(id));
+    public final Photo getPhoto(String id) {
+        return getPhoto(PhotoId.getIdFromString(id));
 	}
 
 	/**
@@ -346,8 +340,8 @@ public class PhotoManager extends ObjectManager {
 	/**
 	 * @methodtype command
 	 */
-	public void addPhoto(Photo photo) throws IOException {
-		PhotoId id = photo.getId();
+    public void addPhoto(Photo photo) throws IOException, PhotoComponentException {
+        PhotoId id = photo.getId();
 		assertIsNewPhoto(id);
 		doAddPhoto(photo);
 

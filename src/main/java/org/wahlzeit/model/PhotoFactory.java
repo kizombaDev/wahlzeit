@@ -20,6 +20,7 @@
 
 package org.wahlzeit.model;
 
+import org.wahlzeit.exceptions.PhotoComponentException;
 import org.wahlzeit.services.LogBuilder;
 
 import java.util.logging.Logger;
@@ -45,8 +46,8 @@ public class PhotoFactory {
 	/**
 	 * Hidden singleton instance; needs to be initialized from the outside.
 	 */
-	public static void initialize() {
-		getInstance(); // drops result due to getInstance() side-effects
+    public static void initialize() {
+        getInstance(); // drops result due to getInstance() side-effects
 	}
 
 	/**
@@ -82,8 +83,8 @@ public class PhotoFactory {
 	/**
 	 * Creates a new photo with the specified id
 	 */
-	public Photo createPhoto(PhotoId id) {
-		return new Photo(id);
+    public Photo createPhoto(PhotoId id) throws PhotoComponentException {
+        return new Photo(id);
 	}
 
 	/**

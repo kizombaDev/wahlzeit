@@ -20,6 +20,7 @@
 
 package org.wahlzeit.model;
 
+import org.wahlzeit.exceptions.PhotoComponentException;
 import org.wahlzeit.services.LogBuilder;
 import org.wahlzeit.utils.AssertUtil;
 
@@ -36,7 +37,6 @@ public class CarPhotoFactory extends PhotoFactory {
 
 
     /**
-     *
      * @return
      * @methodtype get
      */
@@ -50,7 +50,6 @@ public class CarPhotoFactory extends PhotoFactory {
     }
 
     /**
-     *
      * @return
      * @methodtype set
      */
@@ -76,8 +75,13 @@ public class CarPhotoFactory extends PhotoFactory {
      * @param id
      */
     @Override
-    public Photo createPhoto(PhotoId id) {
-        AssertUtil.assertParameterIsNotNull(id, "id");
-        return new CarPhoto(id);
+    public Photo createPhoto(PhotoId id) throws PhotoComponentException {
+        try {
+            AssertUtil.assertParameterIsNotNull(id, "id");
+            return new CarPhoto(id);
+        } catch (Exception e) {
+            log.warning(e.toString());
+            throw new PhotoComponentException(e);
+        }
     }
 }

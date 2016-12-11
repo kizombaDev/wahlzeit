@@ -26,7 +26,7 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.wahlzeit.exceptions.NullArgumentException;
+import org.wahlzeit.exceptions.PhotoComponentException;
 
 public class CarPhotoFactoryTest {
 
@@ -48,12 +48,12 @@ public class CarPhotoFactoryTest {
     }
 
     @Test
-    public void createPhotoWithIdTest() {
+    public void createPhotoWithIdTest() throws PhotoComponentException {
         Assert.assertEquals(CarPhoto.class, CarPhotoFactory.getInstance().createPhoto(new PhotoId(1)).getClass());
     }
 
     @Test
-    public void createPhotoWithIdContainsTheIdTest() {
+    public void createPhotoWithIdContainsTheIdTest() throws PhotoComponentException {
         Photo photo = CarPhotoFactory.getInstance().createPhoto(new PhotoId(1));
         Assert.assertEquals(1, photo.getId().asInt());
     }
@@ -70,8 +70,8 @@ public class CarPhotoFactoryTest {
 
     }
 
-    @Test(expected = NullArgumentException.class)
-    public void passNullToCreatePhotoTest() {
+    @Test(expected = PhotoComponentException.class)
+    public void passNullToCreatePhotoTest() throws PhotoComponentException {
         CarPhotoFactory.getInstance().createPhoto(null);
 
     }
