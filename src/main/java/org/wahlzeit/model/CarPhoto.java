@@ -22,18 +22,18 @@ package org.wahlzeit.model;
 
 
 import org.wahlzeit.exceptions.NullArgumentException;
-import org.wahlzeit.utils.AssertUtil;
+import org.wahlzeit.exceptions.PhotoComponentException;
 
 import java.awt.*;
 
 public class CarPhoto extends Photo {
+
 
     protected Fuel fuel;
     protected Color color;
     protected double weight;
 
     /**
-     *
      * @methodtype constructor
      */
     public CarPhoto() {
@@ -43,16 +43,14 @@ public class CarPhoto extends Photo {
      * @param myId
      * @methodtype constructor
      */
-    public CarPhoto(PhotoId myId) {
+    public CarPhoto(PhotoId myId) throws PhotoComponentException {
         super(myId);
-
         if (myId == null) {
-            throw new NullArgumentException("myId");
+            throw new PhotoComponentException(new NullArgumentException("myId"));
         }
     }
 
     /**
-     *
      * @return
      * @methodtype get
      */
@@ -61,7 +59,6 @@ public class CarPhoto extends Photo {
     }
 
     /**
-     *
      * @return
      * @methodtype set
      */
@@ -70,7 +67,6 @@ public class CarPhoto extends Photo {
     }
 
     /**
-     *
      * @return
      * @methodtype get
      */
@@ -79,17 +75,17 @@ public class CarPhoto extends Photo {
     }
 
     /**
-     *
      * @return
      * @methodtype set
      */
-    public void setColor(Color color) {
-        AssertUtil.assertParameterIsNotNull(color, "color");
+    public void setColor(Color color) throws PhotoComponentException {
+        if (color == null) {
+            throw new PhotoComponentException(new NullArgumentException("color"));
+        }
         this.color = color;
     }
 
     /**
-     *
      * @return
      * @methodtype get
      */
@@ -98,12 +94,13 @@ public class CarPhoto extends Photo {
     }
 
     /**
-     *
      * @return
      * @methodtype set
      */
-    public void setFuel(Fuel fuel) {
-        AssertUtil.assertParameterIsNotNull(fuel, "fuel");
+    public void setFuel(Fuel fuel) throws PhotoComponentException {
+        if (fuel == null) {
+            throw new PhotoComponentException(new NullArgumentException("fuel"));
+        }
         this.fuel = fuel;
     }
 }

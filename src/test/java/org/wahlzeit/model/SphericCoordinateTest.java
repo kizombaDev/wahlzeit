@@ -3,6 +3,7 @@ package org.wahlzeit.model;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.wahlzeit.exceptions.CoordinateComponentException;
 
 /**
  * Test class for {@link SphericCoordinate}.
@@ -14,7 +15,7 @@ public class SphericCoordinateTest {
     private SphericCoordinate emptyCoordinate;
 
     @Before
-    public void init() {
+    public void init() throws CoordinateComponentException {
         emptyCoordinate = new SphericCoordinate(0, 0, 0);
         newYorkCoordinate = new SphericCoordinate(40.712784, -74.005941, SphericCoordinate.EARTH_RADIUS_IN_KM);
     }
@@ -35,67 +36,65 @@ public class SphericCoordinateTest {
     }
 
     @Test
-    public void testSetLatitude() {
+    public void testSetLatitude() throws CoordinateComponentException {
         emptyCoordinate.setLatitude(42);
         Assert.assertEquals(42, emptyCoordinate.getLatitude(), DEGREE_VALUE_DELTA);
     }
 
     @Test
-    public void testSetLongitude() {
+    public void testSetLongitude() throws CoordinateComponentException {
         emptyCoordinate.setLongitude(42);
         Assert.assertEquals(42, emptyCoordinate.getLongitude(), DEGREE_VALUE_DELTA);
     }
 
     @Test
-    public void testSetRadius() {
+    public void testSetRadius() throws CoordinateComponentException {
         emptyCoordinate.setRadius(42);
         Assert.assertEquals(42, emptyCoordinate.getRadius(), DEGREE_VALUE_DELTA);
     }
 
-    @Test(expected = AssertionError.class)
-    public void testInvalidNegativeRadius() {
+    @Test(expected = CoordinateComponentException.class)
+    public void testInvalidNegativeRadius() throws CoordinateComponentException {
         emptyCoordinate.setRadius(-1);
     }
 
     @Test
-    public void testNinetyDegreeIsValidLatitude() {
+    public void testNinetyDegreeIsValidLatitude() throws CoordinateComponentException {
         emptyCoordinate.setLatitude(90);
     }
 
-    @Test(expected = AssertionError.class)
-    public void testNinetyOneDegreeIsInvalidLatitude() {
+    @Test(expected = CoordinateComponentException.class)
+    public void testNinetyOneDegreeIsInvalidLatitude() throws CoordinateComponentException {
         emptyCoordinate.setLatitude(91);
     }
 
     @Test
-    public void testMinusNinetyDegreeIsValidLatitude() {
+    public void testMinusNinetyDegreeIsValidLatitude() throws CoordinateComponentException {
         emptyCoordinate.setLatitude(-90);
     }
 
-    @Test(expected = AssertionError.class)
-    public void testMinusNinetyOneDegreeIsInvalidLatitude() {
+    @Test(expected = CoordinateComponentException.class)
+    public void testMinusNinetyOneDegreeIsInvalidLatitude() throws CoordinateComponentException {
         emptyCoordinate.setLatitude(-91);
     }
 
     @Test
-    public void testOneHundredAndEightyDegreeIsValidLongitude() {
+    public void testOneHundredAndEightyDegreeIsValidLongitude() throws CoordinateComponentException {
         emptyCoordinate.setLongitude(180);
     }
 
-    @Test(expected = AssertionError.class)
-
-    public void testOneHundredAndEightyOneDegreeIsInvalidLongitude() {
+    @Test(expected = CoordinateComponentException.class)
+    public void testOneHundredAndEightyOneDegreeIsInvalidLongitude() throws CoordinateComponentException {
         emptyCoordinate.setLongitude(181);
     }
 
-    @Test(expected = AssertionError.class)
-    public void testMinusOneHundredAndEightyDegreeIsValidLongitude() {
+    @Test(expected = CoordinateComponentException.class)
+    public void testMinusOneHundredAndEightyDegreeIsValidLongitude() throws CoordinateComponentException {
         emptyCoordinate.setLongitude(-180);
     }
 
-    @Test(expected = AssertionError.class)
-
-    public void testMinusOneHundredAndEightyOneDegreeIsInvalidLongitude() {
+    @Test(expected = CoordinateComponentException.class)
+    public void testMinusOneHundredAndEightyOneDegreeIsInvalidLongitude() throws CoordinateComponentException {
         emptyCoordinate.setLongitude(-181);
     }
 }

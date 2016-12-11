@@ -1,5 +1,6 @@
 package org.wahlzeit.model;
 
+import org.wahlzeit.exceptions.CoordinateComponentException;
 import org.wahlzeit.utils.AssertUtil;
 import org.wahlzeit.utils.DoubleUtil;
 
@@ -16,7 +17,7 @@ public abstract class AbstractCoordinate implements Coordinate {
      * @return Returns the distance in km
      */
     @Override
-    public double getDistance(Coordinate coordinate) {
+    public double getDistance(Coordinate coordinate) throws CoordinateComponentException {
         try {
             AssertUtil.assertParameterIsNotNull(coordinate, "coordinate");
             assertAbstractCoordinateType(coordinate);
@@ -26,12 +27,12 @@ public abstract class AbstractCoordinate implements Coordinate {
             return doGetDistance(abstractCoordinate);
         } catch (Exception e) {
             log.warning(e.toString());
-            throw e;
+            throw new CoordinateComponentException(e);
         }
     }
 
     @Override
-    public boolean isEqual(Coordinate coordinate) {
+    public boolean isEqual(Coordinate coordinate) throws CoordinateComponentException {
         try {
             if (coordinate == null) {
                 return false;
@@ -49,7 +50,7 @@ public abstract class AbstractCoordinate implements Coordinate {
             return DoubleUtil.equals(abstractCoordinate.getX(), getX()) && DoubleUtil.equals(abstractCoordinate.getY(), getY()) && DoubleUtil.equals(abstractCoordinate.getZ(), getZ());
         } catch (Exception e) {
             log.warning(e.toString());
-            throw e;
+            throw new CoordinateComponentException(e);
         }
     }
 

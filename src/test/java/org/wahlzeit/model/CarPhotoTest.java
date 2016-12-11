@@ -23,7 +23,7 @@ package org.wahlzeit.model;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.wahlzeit.exceptions.NullArgumentException;
+import org.wahlzeit.exceptions.PhotoComponentException;
 
 import java.awt.*;
 
@@ -37,13 +37,13 @@ public class CarPhotoTest {
     }
 
     @Test
-    public void fuelPropertyTest() {
+    public void fuelPropertyTest() throws PhotoComponentException {
         carPhoto.setFuel(Fuel.petrol);
         Assert.assertEquals(Fuel.petrol, carPhoto.getFuel());
     }
 
     @Test
-    public void colorPropertyTest() {
+    public void colorPropertyTest() throws PhotoComponentException {
         carPhoto.setColor(Color.black);
         Assert.assertEquals(Color.black, carPhoto.getColor());
     }
@@ -54,18 +54,18 @@ public class CarPhotoTest {
         Assert.assertEquals(1234.12, carPhoto.getWeight(), 0.001);
     }
 
-    @Test(expected = NullArgumentException.class)
-    public void passNullToSetColorTest() {
+    @Test(expected = PhotoComponentException.class)
+    public void passNullToSetColorTest() throws PhotoComponentException {
         carPhoto.setColor(null);
     }
 
-    @Test(expected = NullArgumentException.class)
-    public void passNullToSetFuelTest() {
+    @Test(expected = PhotoComponentException.class)
+    public void passNullToSetFuelTest() throws PhotoComponentException {
         carPhoto.setFuel(null);
     }
 
-    @Test(expected = NullArgumentException.class)
-    public void passNullToConstructorTest() {
+    @Test(expected = PhotoComponentException.class)
+    public void passNullToConstructorTest() throws PhotoComponentException {
         new CarPhoto(null);
     }
 }

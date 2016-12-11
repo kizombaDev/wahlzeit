@@ -1,5 +1,7 @@
 package org.wahlzeit.model;
 
+import org.wahlzeit.exceptions.CoordinateComponentException;
+
 import java.util.logging.Logger;
 
 public class CartesianCoordinate extends AbstractCoordinate {
@@ -9,7 +11,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
     private final double y;
     private final double z;
 
-    public CartesianCoordinate(double x, double y, double z) {
+    public CartesianCoordinate(double x, double y, double z) throws CoordinateComponentException {
         try {
             this.x = x;
             this.y = y;
@@ -17,7 +19,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
             assertClassInvariants();
         } catch (Exception e) {
             log.warning(e.toString());
-            throw e;
+            throw new CoordinateComponentException(e);
         }
     }
 

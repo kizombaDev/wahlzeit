@@ -20,6 +20,8 @@
 
 package org.wahlzeit.model;
 
+import org.wahlzeit.exceptions.CoordinateComponentException;
+
 import java.util.logging.Logger;
 
 /**
@@ -33,7 +35,7 @@ public class SphericCoordinate extends AbstractCoordinate {
     private double radius;
 
 
-    public SphericCoordinate(double latitude, double longitude, double radius) {
+    public SphericCoordinate(double latitude, double longitude, double radius) throws CoordinateComponentException {
         try {
             assertLatitude(latitude);
             assertLongitude(longitude);
@@ -42,9 +44,9 @@ public class SphericCoordinate extends AbstractCoordinate {
             this.latitude = latitude;
             this.longitude = longitude;
             this.radius = radius;
-        } catch (Exception e) {
+        } catch (Throwable e) {
             log.warning(e.toString());
-            throw e;
+            throw new CoordinateComponentException(e);
         }
     }
 
@@ -86,14 +88,14 @@ public class SphericCoordinate extends AbstractCoordinate {
      *
      * @param latitude
      */
-    public void setLatitude(double latitude) {
+    public void setLatitude(double latitude) throws CoordinateComponentException {
         try {
             assertLatitude(latitude);
             this.latitude = latitude;
             assertClassInvariants();
-        } catch (Exception e) {
+        } catch (Throwable e) {
             log.warning(e.toString());
-            throw e;
+            throw new CoordinateComponentException(e);
         }
     }
 
@@ -111,14 +113,14 @@ public class SphericCoordinate extends AbstractCoordinate {
      *
      * @param longitude
      */
-    public void setLongitude(double longitude) {
+    public void setLongitude(double longitude) throws CoordinateComponentException {
         try {
             assertLongitude(longitude);
             this.longitude = longitude;
             assertClassInvariants();
-        } catch (Exception e) {
+        } catch (Throwable e) {
             log.warning(e.toString());
-            throw e;
+            throw new CoordinateComponentException(e);
         }
     }
 
@@ -161,14 +163,14 @@ public class SphericCoordinate extends AbstractCoordinate {
         return radius;
     }
 
-    public void setRadius(double radius) {
+    public void setRadius(double radius) throws CoordinateComponentException {
         try {
             assertRadius(radius);
             this.radius = radius;
             assertClassInvariants();
-        } catch (Exception e) {
+        } catch (Throwable e) {
             log.warning(e.toString());
-            throw e;
+            throw new CoordinateComponentException(e);
         }
     }
 }

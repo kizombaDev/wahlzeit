@@ -2,7 +2,7 @@ package org.wahlzeit.model;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.wahlzeit.exceptions.NullArgumentException;
+import org.wahlzeit.exceptions.CoordinateComponentException;
 
 /**
  * Test class for {@link Location}.
@@ -10,7 +10,7 @@ import org.wahlzeit.exceptions.NullArgumentException;
 public class LocationTest {
 
 	@Test
-	public void testLocatioinRequireAlwaysACoordinate() {
+	public void testLocatioinRequireAlwaysACoordinate() throws CoordinateComponentException {
 		Coordinate coordinate = new CartesianCoordinate(1,1,1);
 		Location location = new Location(coordinate);
 		Coordinate actualCoordinate = location.getCoordinate();
@@ -18,13 +18,13 @@ public class LocationTest {
 		Assert.assertSame(coordinate, actualCoordinate);
 	}
 
-	@Test(expected = NullArgumentException.class)
-	public void testThrowIllegalArgumentExceptionIfCoordinateIsNull(){
+	@Test(expected = CoordinateComponentException.class)
+	public void testThrowIllegalArgumentExceptionIfCoordinateIsNull() throws CoordinateComponentException {
 		new Location(null);
 	}
 
-	@Test(expected = NullArgumentException.class)
-	public void testThrowIllegalArgumentExceptionIfLocationParameterOfGetDistanceIsNull(){
+	@Test(expected = CoordinateComponentException.class)
+	public void testThrowIllegalArgumentExceptionIfLocationParameterOfGetDistanceIsNull() throws CoordinateComponentException {
 		new Location(new CartesianCoordinate(1,1,1)).getDistance(null);
 	}
 }

@@ -3,6 +3,7 @@ package org.wahlzeit.model;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.wahlzeit.exceptions.CoordinateComponentException;
 
 /**
  * Test class for {@link Photo}.
@@ -17,7 +18,7 @@ public class PhotoTest {
 	}
 
 	@Test
-	public void testPhotoLocation() {
+	public void testPhotoLocation() throws CoordinateComponentException {
 		Location location = new Location(new CartesianCoordinate(1,1,1));
 		photo.setLocation(location);
 

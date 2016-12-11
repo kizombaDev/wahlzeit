@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.wahlzeit.exceptions.CoordinateComponentException;
 
 
 /**
@@ -42,54 +43,54 @@ public class AbstractCoordinateTest {
     }
 
     @Test
-    public void getDistanceTestWithCartesianCoordinatesTest() {
+    public void getDistanceTestWithCartesianCoordinatesTest() throws CoordinateComponentException {
 
         Assert.assertEquals(5.196152, oneTwoThreeCoordinate.getDistance(fourFiveSixCoordinate), DOUBLE_TEST_DELTA);
     }
 
     @Test
-    public void getDistanceWithZeroPoint() {
+    public void getDistanceWithZeroPoint() throws CoordinateComponentException {
         Assert.assertEquals(1, zeroZeroZeroCoordinate.getDistance(oneZeroZeroCoordinate), DOUBLE_TEST_DELTA);
     }
 
     @Test
-    public void getDistanceBetweenTwoPointsWithTheSameLocation() {
+    public void getDistanceBetweenTwoPointsWithTheSameLocation() throws CoordinateComponentException {
         Assert.assertEquals(0, oneTwoThreeCoordinate.getDistance(oneTwoThreeCoordinate), DOUBLE_TEST_DELTA);
     }
 
     @Test
-    public void isEqualWithNullCoordinate() {
+    public void isEqualWithNullCoordinate() throws CoordinateComponentException {
         Assert.assertFalse(zeroZeroZeroCoordinate.isEqual(null));
     }
 
     @Test
-    public void isEqualWithTwoEqualCoordinates() {
+    public void isEqualWithTwoEqualCoordinates() throws CoordinateComponentException {
         CartesianCoordinate first = new CartesianCoordinate(1, 2, 3);
         Assert.assertTrue(first.isEqual(oneTwoThreeCoordinate));
     }
 
     @Test
-    public void isEqualWithTwoDifferentCoordinates() {
+    public void isEqualWithTwoDifferentCoordinates() throws CoordinateComponentException {
         Assert.assertFalse(oneTwoThreeCoordinate.isEqual(zeroZeroZeroCoordinate));
     }
 
     @Test
-    public void isEqualWithTheSameCoordinate() {
+    public void isEqualWithTheSameCoordinate() throws CoordinateComponentException {
         Assert.assertTrue(oneTwoThreeCoordinate.isEqual(oneTwoThreeCoordinate));
     }
 
     @Test
-    public void getDistanceBetweenNewYorkAndLondon() {
+    public void getDistanceBetweenNewYorkAndLondon() throws CoordinateComponentException {
         Assert.assertEquals(5601.07988, newYorkCoordinate.getDistance(londonCoordinate), DOUBLE_TEST_DELTA);
     }
 
     @Test
-    public void getDistanceBetweenNewYorkAndCapetown() {
+    public void getDistanceBetweenNewYorkAndCapetown() throws CoordinateComponentException {
         Assert.assertEquals(5372.89500, newYorkCoordinate.getDistance(capetownCoordinate), DOUBLE_TEST_DELTA);
     }
 
     @Test
-    public void getDistanceBetweenCapetownAndLondon() {
+    public void getDistanceBetweenCapetownAndLondon() throws CoordinateComponentException {
         Assert.assertEquals(8536.47656, capetownCoordinate.getDistance(londonCoordinate), DOUBLE_TEST_DELTA);
     }
 }

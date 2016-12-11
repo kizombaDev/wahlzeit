@@ -20,6 +20,7 @@
 
 package org.wahlzeit.model;
 
+import org.wahlzeit.exceptions.CoordinateComponentException;
 import org.wahlzeit.exceptions.NullArgumentException;
 
 /**
@@ -33,11 +34,10 @@ public class Location  {
 	 *
 	 * @param coordinate The coordinates of the location. Null is not allowed
 	 */
-	public Location(Coordinate coordinate)
-	{
+	public Location(Coordinate coordinate) throws CoordinateComponentException {
 		if(coordinate == null)
 		{
-			throw new NullArgumentException("coordinate");
+			throw new CoordinateComponentException(new NullArgumentException("coordinate"));
 		}
 
 		this.coordinate = coordinate;
@@ -56,10 +56,10 @@ public class Location  {
 	 * @param location The second location
 	 * @return Returns the distance in km
 	 */
-	public double getDistance(Location location) {
+	public double getDistance(Location location) throws CoordinateComponentException {
 		if(location == null)
 		{
-			throw new NullArgumentException("location");
+			throw new CoordinateComponentException(new NullArgumentException("location"));
 		}
 
 		return coordinate.getDistance(location.getCoordinate());
