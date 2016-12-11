@@ -20,23 +20,32 @@
 
 package org.wahlzeit.model;
 
+import java.util.logging.Logger;
+
 /**
  * Class that represents a coordinate consisting of latitude, longitude and radius
  */
 public class SphericCoordinate extends AbstractCoordinate {
     public static final double EARTH_RADIUS_IN_KM = 6371;
+    private static final Logger log = Logger.getLogger(SphericCoordinate.class.getName());
     private double latitude;
     private double longitude;
     private double radius;
 
-    public SphericCoordinate(double latitude, double longitude, double radius) {
-        assertLatitude(latitude);
-        assertLongitude(longitude);
-        assertRadius(radius);
 
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.radius = radius;
+    public SphericCoordinate(double latitude, double longitude, double radius) {
+        try {
+            assertLatitude(latitude);
+            assertLongitude(longitude);
+            assertRadius(radius);
+
+            this.latitude = latitude;
+            this.longitude = longitude;
+            this.radius = radius;
+        } catch (Exception e) {
+            log.warning(e.toString());
+            throw e;
+        }
     }
 
     /**
@@ -78,9 +87,14 @@ public class SphericCoordinate extends AbstractCoordinate {
      * @param latitude
      */
     public void setLatitude(double latitude) {
-        assertLatitude(latitude);
-        this.latitude = latitude;
-        assertClassInvariants();
+        try {
+            assertLatitude(latitude);
+            this.latitude = latitude;
+            assertClassInvariants();
+        } catch (Exception e) {
+            log.warning(e.toString());
+            throw e;
+        }
     }
 
     /**
@@ -98,9 +112,14 @@ public class SphericCoordinate extends AbstractCoordinate {
      * @param longitude
      */
     public void setLongitude(double longitude) {
-        assertLongitude(longitude);
-        this.longitude = longitude;
-        assertClassInvariants();
+        try {
+            assertLongitude(longitude);
+            this.longitude = longitude;
+            assertClassInvariants();
+        } catch (Exception e) {
+            log.warning(e.toString());
+            throw e;
+        }
     }
 
     @Override
@@ -143,8 +162,13 @@ public class SphericCoordinate extends AbstractCoordinate {
     }
 
     public void setRadius(double radius) {
-        assertRadius(radius);
-        this.radius = radius;
-        assertClassInvariants();
+        try {
+            assertRadius(radius);
+            this.radius = radius;
+            assertClassInvariants();
+        } catch (Exception e) {
+            log.warning(e.toString());
+            throw e;
+        }
     }
 }

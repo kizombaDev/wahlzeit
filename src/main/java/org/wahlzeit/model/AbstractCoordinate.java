@@ -3,7 +3,12 @@ package org.wahlzeit.model;
 import org.wahlzeit.utils.AssertUtil;
 import org.wahlzeit.utils.DoubleUtil;
 
+import java.util.logging.Logger;
+
 public abstract class AbstractCoordinate implements Coordinate {
+
+    private static final Logger log = Logger.getLogger(AbstractCoordinate.class.getName());
+
     /**
      * Calculates the distance between two coordinates.
      *
@@ -12,31 +17,40 @@ public abstract class AbstractCoordinate implements Coordinate {
      */
     @Override
     public double getDistance(Coordinate coordinate) {
-        AssertUtil.assertParameterIsNotNull(coordinate, "coordinate");
-        assertAbstractCoordinateType(coordinate);
-        assertClassInvariants();
+        try {
+            AssertUtil.assertParameterIsNotNull(coordinate, "coordinate");
+            assertAbstractCoordinateType(coordinate);
+            assertClassInvariants();
 
-        AbstractCoordinate abstractCoordinate = (AbstractCoordinate) coordinate;
-        return doGetDistance(abstractCoordinate);
+            AbstractCoordinate abstractCoordinate = (AbstractCoordinate) coordinate;
+            return doGetDistance(abstractCoordinate);
+        } catch (Exception e) {
+            log.warning(e.toString());
+            throw e;
+        }
     }
 
     @Override
     public boolean isEqual(Coordinate coordinate) {
+        try {
+            if (coordinate == null) {
+                return false;
+            }
 
-        if (coordinate == null) {
-            return false;
+            if (this == coordinate) {
+                return true;
+            }
+
+            assertClassInvariants();
+            assertAbstractCoordinateType(coordinate);
+
+            AbstractCoordinate abstractCoordinate = (AbstractCoordinate) coordinate;
+
+            return DoubleUtil.equals(abstractCoordinate.getX(), getX()) && DoubleUtil.equals(abstractCoordinate.getY(), getY()) && DoubleUtil.equals(abstractCoordinate.getZ(), getZ());
+        } catch (Exception e) {
+            log.warning(e.toString());
+            throw e;
         }
-
-        if (this == coordinate) {
-            return true;
-        }
-
-        assertClassInvariants();
-        assertAbstractCoordinateType(coordinate);
-
-        AbstractCoordinate abstractCoordinate = (AbstractCoordinate) coordinate;
-
-        return DoubleUtil.equals(abstractCoordinate.getX(), getX()) && DoubleUtil.equals(abstractCoordinate.getY(), getY()) && DoubleUtil.equals(abstractCoordinate.getZ(), getZ());
     }
 
     private void assertAbstractCoordinateType(Coordinate coordinate) {

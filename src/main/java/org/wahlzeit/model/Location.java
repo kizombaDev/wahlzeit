@@ -20,6 +20,8 @@
 
 package org.wahlzeit.model;
 
+import org.wahlzeit.exceptions.NullArgumentException;
+
 /**
  * Represents the location of an object, for example the {@link Photo}
  */
@@ -35,7 +37,7 @@ public class Location  {
 	{
 		if(coordinate == null)
 		{
-			throw new IllegalArgumentException("The parameter coordinate is null");
+			throw new NullArgumentException("coordinate");
 		}
 
 		this.coordinate = coordinate;
@@ -57,7 +59,7 @@ public class Location  {
 	public double getDistance(Location location) {
 		if(location == null)
 		{
-			throw new IllegalArgumentException("The parameter location is null");
+			throw new NullArgumentException("location");
 		}
 
 		return coordinate.getDistance(location.getCoordinate());

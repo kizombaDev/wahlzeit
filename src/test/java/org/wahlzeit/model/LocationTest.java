@@ -2,6 +2,7 @@ package org.wahlzeit.model;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.wahlzeit.exceptions.NullArgumentException;
 
 /**
  * Test class for {@link Location}.
@@ -17,12 +18,12 @@ public class LocationTest {
 		Assert.assertSame(coordinate, actualCoordinate);
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = NullArgumentException.class)
 	public void testThrowIllegalArgumentExceptionIfCoordinateIsNull(){
 		new Location(null);
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = NullArgumentException.class)
 	public void testThrowIllegalArgumentExceptionIfLocationParameterOfGetDistanceIsNull(){
 		new Location(new CartesianCoordinate(1,1,1)).getDistance(null);
 	}

@@ -1,27 +1,33 @@
 package org.wahlzeit.model;
 
+import java.util.logging.Logger;
+
 public class CartesianCoordinate extends AbstractCoordinate {
 
+    private static final Logger log = Logger.getLogger(CartesianCoordinate.class.getName());
     private final double x;
     private final double y;
     private final double z;
 
     public CartesianCoordinate(double x, double y, double z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        assertClassInvariants();
+        try {
+            this.x = x;
+            this.y = y;
+            this.z = z;
+            assertClassInvariants();
+        } catch (Exception e) {
+            log.warning(e.toString());
+            throw e;
+        }
     }
 
     public double getX() {
         return x;
     }
 
-
     public double getY() {
         return y;
     }
-
 
     public double getZ() {
         return z;
