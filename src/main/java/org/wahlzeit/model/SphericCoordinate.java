@@ -29,13 +29,14 @@ import java.util.logging.Logger;
  */
 public class SphericCoordinate extends AbstractCoordinate {
     public static final double EARTH_RADIUS_IN_KM = 6371;
+    protected static final ValueTypeCache<SphericCoordinate> cache = new ValueTypeCache<>();
     private static final Logger log = Logger.getLogger(SphericCoordinate.class.getName());
-    private double latitude;
-    private double longitude;
-    private double radius;
+    private final double latitude;
+    private final double longitude;
+    private final double radius;
 
 
-    public SphericCoordinate(double latitude, double longitude, double radius) throws CoordinateComponentException {
+    private SphericCoordinate(double latitude, double longitude, double radius) throws CoordinateComponentException {
         try {
             assertLatitude(latitude);
             assertLongitude(longitude);
@@ -48,6 +49,11 @@ public class SphericCoordinate extends AbstractCoordinate {
             log.warning(e.toString());
             throw new CoordinateComponentException(e);
         }
+    }
+
+    public static SphericCoordinate create(double latitude, double longitude, double radius) throws CoordinateComponentException {
+        SphericCoordinate key = new SphericCoordinate(latitude, longitude, radius);
+        return cache.putIfAbsent(key);
     }
 
     /**
@@ -84,44 +90,12 @@ public class SphericCoordinate extends AbstractCoordinate {
     }
 
     /**
-     * Sets the latitude in degrees
-     *
-     * @param latitude
-     */
-    public void setLatitude(double latitude) throws CoordinateComponentException {
-        try {
-            assertLatitude(latitude);
-            this.latitude = latitude;
-            assertClassInvariants();
-        } catch (Throwable e) {
-            log.warning(e.toString());
-            throw new CoordinateComponentException(e);
-        }
-    }
-
-    /**
      * Gets the longitude in degrees
      *
      * @return Longitude in degrees
      */
     public double getLongitude() {
         return longitude;
-    }
-
-    /**
-     * Sets the longitude in degrees
-     *
-     * @param longitude
-     */
-    public void setLongitude(double longitude) throws CoordinateComponentException {
-        try {
-            assertLongitude(longitude);
-            this.longitude = longitude;
-            assertClassInvariants();
-        } catch (Throwable e) {
-            log.warning(e.toString());
-            throw new CoordinateComponentException(e);
-        }
     }
 
     @Override
@@ -163,14 +137,28 @@ public class SphericCoordinate extends AbstractCoordinate {
         return radius;
     }
 
-    public void setRadius(double radius) throws CoordinateComponentException {
-        try {
-            assertRadius(radius);
-            this.radius = radius;
-            assertClassInvariants();
-        } catch (Throwable e) {
-            log.warning(e.toString());
-            throw new CoordinateComponentException(e);
-        }
+    @Override
+    public int hashCode() {
+        //hash code implementation http://stackoverflow.com/a/113600/5888753
+        int result = 41;
+        long c = Double.doubleToLongBits(getLatitude());
+        result = 37 * result + (int) (c ^ (c >>> 32));
+        c = Double.doubleToLongBits(getLongitude());
+        result = 37 * result + (int) (c ^ (c >>> 32));
+        c = Double.doubleToLongBits(getRadius());
+        result = 37 * result + (int) (c ^ (c >>> 32));
+        return result;
+    }
+
+    public SphericCoordinate changeLatitude(double latitude) throws CoordinateComponentException {
+        return new SphericCoordinate(latitude, getLongitude(), getRadius());
+    }
+
+    public SphericCoordinate changeLongitude(double longitude) throws CoordinateComponentException {
+        return new SphericCoordinate(getLatitude(), longitude, getRadius());
+    }
+
+    public SphericCoordinate changeRadius(double radius) throws CoordinateComponentException {
+        return new SphericCoordinate(getLatitude(), getLongitude(), radius);
     }
 }

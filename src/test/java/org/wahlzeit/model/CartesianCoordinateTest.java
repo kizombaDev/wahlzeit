@@ -13,7 +13,7 @@ public class CartesianCoordinateTest {
 
     @Test
     public void propertiesTest() throws CoordinateComponentException {
-        CartesianCoordinate oneTwoThreeCoordinate = new CartesianCoordinate(1, 2, 3);
+        CartesianCoordinate oneTwoThreeCoordinate = CartesianCoordinate.create(1, 2, 3);
 
         Assert.assertEquals(1, oneTwoThreeCoordinate.getX(), DOUBLE_TEST_DELTA);
         Assert.assertEquals(2, oneTwoThreeCoordinate.getY(), DOUBLE_TEST_DELTA);
@@ -22,46 +22,92 @@ public class CartesianCoordinateTest {
 
     @Test(expected = CoordinateComponentException.class)
     public void positiveInfinityXTest() throws CoordinateComponentException {
-        new CartesianCoordinate(Double.POSITIVE_INFINITY, 2, 3);
+        CartesianCoordinate.create(Double.POSITIVE_INFINITY, 2, 3);
     }
 
     @Test(expected = CoordinateComponentException.class)
     public void negativeInfinityXTest() throws CoordinateComponentException {
-        new CartesianCoordinate(Double.NEGATIVE_INFINITY, 2, 3);
+        CartesianCoordinate.create(Double.NEGATIVE_INFINITY, 2, 3);
     }
 
     @Test(expected = CoordinateComponentException.class)
     public void notANumberXTest() throws CoordinateComponentException {
-        new CartesianCoordinate(Double.NaN, 2, 3);
+        CartesianCoordinate.create(Double.NaN, 2, 3);
     }
 
     @Test(expected = CoordinateComponentException.class)
     public void positiveInfinityYTest() throws CoordinateComponentException {
-        new CartesianCoordinate(1, Double.POSITIVE_INFINITY, 3);
+        CartesianCoordinate.create(1, Double.POSITIVE_INFINITY, 3);
     }
 
     @Test(expected = CoordinateComponentException.class)
     public void negativeInfinityYTest() throws CoordinateComponentException {
-        new CartesianCoordinate(1, Double.NEGATIVE_INFINITY, 3);
+        CartesianCoordinate.create(1, Double.NEGATIVE_INFINITY, 3);
     }
 
     @Test(expected = CoordinateComponentException.class)
     public void notANumberYTest() throws CoordinateComponentException {
-        new CartesianCoordinate(1, Double.NaN, 3);
+        CartesianCoordinate.create(1, Double.NaN, 3);
     }
 
     @Test(expected = CoordinateComponentException.class)
     public void notANumberZTest() throws CoordinateComponentException {
-        new CartesianCoordinate(1, 2, Double.NaN);
+        CartesianCoordinate.create(1, 2, Double.NaN);
     }
 
     @Test(expected = CoordinateComponentException.class)
     public void positiveInfinityZTest() throws CoordinateComponentException {
-        new CartesianCoordinate(1, 2, Double.POSITIVE_INFINITY);
+        CartesianCoordinate.create(1, 2, Double.POSITIVE_INFINITY);
     }
 
     @Test(expected = CoordinateComponentException.class)
     public void negativeInfinityZTest() throws CoordinateComponentException {
-        new CartesianCoordinate(1, 2, Double.NEGATIVE_INFINITY);
+        CartesianCoordinate.create(1, 2, Double.NEGATIVE_INFINITY);
+    }
+
+    @Test
+    public void twoCoordinatesWithTheSameDoublesShouldBeTheSame() throws CoordinateComponentException {
+        Assert.assertSame(CartesianCoordinate.create(4, 0, 0), CartesianCoordinate.create(4, 0, 0));
+    }
+
+    @Test
+    public void twoCoordinatesWithDifferentDoublesShouldNotBeTheSame() throws CoordinateComponentException {
+        Assert.assertNotSame(CartesianCoordinate.create(5, 0, 0), CartesianCoordinate.create(4, 0, 0));
+    }
+
+    @Test
+    public void changeXTest() throws CoordinateComponentException {
+        CartesianCoordinate oneTwoThreeCoordinate = CartesianCoordinate.create(1, 2, 3);
+
+        CartesianCoordinate changeCoordinate = oneTwoThreeCoordinate.changeX(42);
+
+        Assert.assertNotSame(changeCoordinate, oneTwoThreeCoordinate);
+        Assert.assertEquals(42, changeCoordinate.getX(), DOUBLE_TEST_DELTA);
+        Assert.assertEquals(2, changeCoordinate.getY(), DOUBLE_TEST_DELTA);
+        Assert.assertEquals(3, changeCoordinate.getZ(), DOUBLE_TEST_DELTA);
+    }
+
+    @Test
+    public void changeYTest() throws CoordinateComponentException {
+        CartesianCoordinate oneTwoThreeCoordinate = CartesianCoordinate.create(1, 2, 3);
+
+        CartesianCoordinate changeCoordinate = oneTwoThreeCoordinate.changeY(42);
+
+        Assert.assertNotSame(changeCoordinate, oneTwoThreeCoordinate);
+        Assert.assertEquals(1, changeCoordinate.getX(), DOUBLE_TEST_DELTA);
+        Assert.assertEquals(42, changeCoordinate.getY(), DOUBLE_TEST_DELTA);
+        Assert.assertEquals(3, changeCoordinate.getZ(), DOUBLE_TEST_DELTA);
+    }
+
+    @Test
+    public void changeZTest() throws CoordinateComponentException {
+        CartesianCoordinate oneTwoThreeCoordinate = CartesianCoordinate.create(1, 2, 3);
+
+        CartesianCoordinate changeCoordinate = oneTwoThreeCoordinate.changeZ(42);
+
+        Assert.assertNotSame(changeCoordinate, oneTwoThreeCoordinate);
+        Assert.assertEquals(1, changeCoordinate.getX(), DOUBLE_TEST_DELTA);
+        Assert.assertEquals(2, changeCoordinate.getY(), DOUBLE_TEST_DELTA);
+        Assert.assertEquals(42, changeCoordinate.getZ(), DOUBLE_TEST_DELTA);
     }
 }

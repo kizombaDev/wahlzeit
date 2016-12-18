@@ -54,6 +54,30 @@ public abstract class AbstractCoordinate implements Coordinate {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        try {
+            return isEqual((o instanceof Coordinate) ? (Coordinate) o : null);
+        } catch (CoordinateComponentException e) {
+            throw new IllegalStateException(e);
+            //This is a big disadvantage of checked exceptions. I can not add the checked exception CoordinateComponentException to the signature of the method
+            //because this is an inherited method of object and it is not permissible for me to change the object class in the JDK
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        //hash code implementation http://stackoverflow.com/a/113600/5888753
+        int result = 41;
+        long c = Double.doubleToLongBits(getX());
+        result = 37 * result + (int) (c ^ (c >>> 32));
+        c = Double.doubleToLongBits(getY());
+        result = 37 * result + (int) (c ^ (c >>> 32));
+        c = Double.doubleToLongBits(getZ());
+        result = 37 * result + (int) (c ^ (c >>> 32));
+        return result;
+    }
+
     private void assertAbstractCoordinateType(Coordinate coordinate) {
         if (coordinate instanceof AbstractCoordinate == false) {
             throw new IllegalStateException("Unknown coordinate type");

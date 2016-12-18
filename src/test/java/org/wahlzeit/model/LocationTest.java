@@ -11,8 +11,8 @@ public class LocationTest {
 
 	@Test
 	public void testLocatioinRequireAlwaysACoordinate() throws CoordinateComponentException {
-		Coordinate coordinate = new CartesianCoordinate(1,1,1);
-		Location location = new Location(coordinate);
+        Coordinate coordinate = CartesianCoordinate.create(1, 1, 1);
+        Location location = new Location(coordinate);
 		Coordinate actualCoordinate = location.getCoordinate();
 
 		Assert.assertSame(coordinate, actualCoordinate);
@@ -25,6 +25,6 @@ public class LocationTest {
 
 	@Test(expected = CoordinateComponentException.class)
 	public void testThrowIllegalArgumentExceptionIfLocationParameterOfGetDistanceIsNull() throws CoordinateComponentException {
-		new Location(new CartesianCoordinate(1,1,1)).getDistance(null);
-	}
+        new Location(CartesianCoordinate.create(1, 1, 1)).getDistance(null);
+    }
 }

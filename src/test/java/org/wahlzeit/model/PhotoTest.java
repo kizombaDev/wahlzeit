@@ -19,8 +19,8 @@ public class PhotoTest {
 
 	@Test
 	public void testPhotoLocation() throws CoordinateComponentException {
-		Location location = new Location(new CartesianCoordinate(1,1,1));
-		photo.setLocation(location);
+        Location location = new Location(CartesianCoordinate.create(1, 1, 1));
+        photo.setLocation(location);
 
 		Assert.assertSame(location, photo.getLocation());
 	}

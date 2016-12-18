@@ -6,7 +6,6 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import org.wahlzeit.exceptions.CoordinateComponentException;
 
-
 /**
  * Test class for {@link AbstractCoordinate}.
  */
@@ -65,7 +64,7 @@ public class AbstractCoordinateTest {
 
     @Test
     public void isEqualWithTwoEqualCoordinates() throws CoordinateComponentException {
-        CartesianCoordinate first = new CartesianCoordinate(1, 2, 3);
+        CartesianCoordinate first = CartesianCoordinate.create(1, 2, 3);
         Assert.assertTrue(first.isEqual(oneTwoThreeCoordinate));
     }
 
@@ -77,6 +76,27 @@ public class AbstractCoordinateTest {
     @Test
     public void isEqualWithTheSameCoordinate() throws CoordinateComponentException {
         Assert.assertTrue(oneTwoThreeCoordinate.isEqual(oneTwoThreeCoordinate));
+    }
+
+    @Test
+    public void equalWithNullCoordinate() throws CoordinateComponentException {
+        Assert.assertFalse(zeroZeroZeroCoordinate.equals(null));
+    }
+
+    @Test
+    public void equalWithTwoEqualCoordinates() throws CoordinateComponentException {
+        CartesianCoordinate first = CartesianCoordinate.create(1, 2, 3);
+        Assert.assertTrue(first.equals(oneTwoThreeCoordinate));
+    }
+
+    @Test
+    public void equalWithTwoDifferentCoordinates() throws CoordinateComponentException {
+        Assert.assertFalse(oneTwoThreeCoordinate.equals(zeroZeroZeroCoordinate));
+    }
+
+    @Test
+    public void equalWithTheSameCoordinate() throws CoordinateComponentException {
+        Assert.assertTrue(oneTwoThreeCoordinate.equals(oneTwoThreeCoordinate));
     }
 
     @Test
