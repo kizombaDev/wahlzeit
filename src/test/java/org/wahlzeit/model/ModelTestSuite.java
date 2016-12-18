@@ -42,7 +42,8 @@ import org.wahlzeit.model.persistence.PersistenceTestSuite;
         SphericCoordinateTest.class,
         TagsTest.class,
         UserStatusTest.class,
-        ValueTest.class
+        ValueTest.class,
+        ValueTypeCacheTest.class
 })
 public class ModelTestSuite {
     //nothing to do
