@@ -3,9 +3,13 @@ package org.wahlzeit.model;
 import org.wahlzeit.exceptions.CoordinateComponentException;
 import org.wahlzeit.utils.AssertUtil;
 import org.wahlzeit.utils.DoubleUtil;
+import org.wahlzeit.utils.PatternInstance;
 
 import java.util.logging.Logger;
 
+@PatternInstance(
+        patternName = "TemplateMethod",
+        participants = {"AbstractCoordinate", "CartesianCoordinate", "SphericCoordinate"})
 public abstract class AbstractCoordinate implements Coordinate {
 
     private static final Logger log = Logger.getLogger(AbstractCoordinate.class.getName());

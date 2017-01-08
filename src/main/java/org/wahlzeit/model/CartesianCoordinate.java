@@ -1,9 +1,13 @@
 package org.wahlzeit.model;
 
 import org.wahlzeit.exceptions.CoordinateComponentException;
+import org.wahlzeit.utils.PatternInstance;
 
 import java.util.logging.Logger;
 
+@PatternInstance(
+        patternName = "Value Object",
+        participants = {"CartesianCoordinate"})
 public class CartesianCoordinate extends AbstractCoordinate {
 
     protected static final ValueTypeCache<CartesianCoordinate> cache = new ValueTypeCache<>();

@@ -21,27 +21,31 @@
 package org.wahlzeit.services.mailing;
 
 import org.wahlzeit.services.EmailAddress;
+import org.wahlzeit.utils.PatternInstance;
 
 import javax.mail.Message;
 
 /**
  * Abstract superclass for non-trivial EmailServer implementations.
  */
+@PatternInstance(
+        patternName = "Null Object",
+        participants = {"MockEmailService", "AbstractEmailService", "SmtpEmailService"}
+)
 public class MockEmailService extends AbstractEmailService {
 
-	/**
-	 *
-	 */
-	protected Message doCreateEmail(EmailAddress from, EmailAddress to, EmailAddress bcc, String subject,
-									String body) throws MailingException {
-		return null;
-	}
+    /**
+     *
+     */
+    protected Message doCreateEmail(EmailAddress from, EmailAddress to, EmailAddress bcc, String subject,
+                                    String body) throws MailingException {
+        return null;
+    }
 
-	/**
-	 *
-	 */
-	protected void doSendEmail(Message msg) throws MailingException {
-		// do nothing
-	}
-
+    /**
+     *
+     */
+    protected void doSendEmail(Message msg) throws MailingException {
+        // do nothing
+    }
 }

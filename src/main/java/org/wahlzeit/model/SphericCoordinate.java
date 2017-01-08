@@ -21,12 +21,16 @@
 package org.wahlzeit.model;
 
 import org.wahlzeit.exceptions.CoordinateComponentException;
+import org.wahlzeit.utils.PatternInstance;
 
 import java.util.logging.Logger;
 
 /**
  * Class that represents a coordinate consisting of latitude, longitude and radius
  */
+@PatternInstance(
+        patternName = "Value Object",
+        participants = {"SphericCoordinate"})
 public class SphericCoordinate extends AbstractCoordinate {
     public static final double EARTH_RADIUS_IN_KM = 6371;
     protected static final ValueTypeCache<SphericCoordinate> cache = new ValueTypeCache<>();
