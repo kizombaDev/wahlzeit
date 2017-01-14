@@ -20,12 +20,10 @@
 
 package org.wahlzeit.model;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.wahlzeit.exceptions.PhotoComponentException;
 
-import java.awt.*;
 
 public class CarPhotoTest {
 
@@ -36,36 +34,11 @@ public class CarPhotoTest {
         carPhoto = new CarPhoto();
     }
 
-    @Test
-    public void fuelPropertyTest() throws PhotoComponentException {
-        carPhoto.setFuel(Fuel.petrol);
-        Assert.assertEquals(Fuel.petrol, carPhoto.getFuel());
-    }
-
-    @Test
-    public void colorPropertyTest() throws PhotoComponentException {
-        carPhoto.setColor(Color.black);
-        Assert.assertEquals(Color.black, carPhoto.getColor());
-    }
-
-    @Test
-    public void weightPropertyTest() {
-        carPhoto.setWeight(1234.12);
-        Assert.assertEquals(1234.12, carPhoto.getWeight(), 0.001);
-    }
-
-    @Test(expected = PhotoComponentException.class)
-    public void passNullToSetColorTest() throws PhotoComponentException {
-        carPhoto.setColor(null);
-    }
-
-    @Test(expected = PhotoComponentException.class)
-    public void passNullToSetFuelTest() throws PhotoComponentException {
-        carPhoto.setFuel(null);
-    }
 
     @Test(expected = PhotoComponentException.class)
     public void passNullToConstructorTest() throws PhotoComponentException {
         new CarPhoto(null);
     }
+
+    //todo marcel tests
 }

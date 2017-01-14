@@ -24,14 +24,9 @@ package org.wahlzeit.model;
 import org.wahlzeit.exceptions.NullArgumentException;
 import org.wahlzeit.exceptions.PhotoComponentException;
 
-import java.awt.*;
-
 public class CarPhoto extends Photo {
 
-
-    protected Fuel fuel;
-    protected Color color;
-    protected double weight;
+    private Car car;
 
     /**
      * @methodtype constructor
@@ -50,57 +45,11 @@ public class CarPhoto extends Photo {
         }
     }
 
-    /**
-     * @return
-     * @methodtype get
-     */
-    public double getWeight() {
-        return weight;
+    public Car getCar() {
+        return car;
     }
 
-    /**
-     * @return
-     * @methodtype set
-     */
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
-
-    /**
-     * @return
-     * @methodtype get
-     */
-    public Color getColor() {
-        return color;
-    }
-
-    /**
-     * @return
-     * @methodtype set
-     */
-    public void setColor(Color color) throws PhotoComponentException {
-        if (color == null) {
-            throw new PhotoComponentException(new NullArgumentException("color"));
-        }
-        this.color = color;
-    }
-
-    /**
-     * @return
-     * @methodtype get
-     */
-    public Fuel getFuel() {
-        return fuel;
-    }
-
-    /**
-     * @return
-     * @methodtype set
-     */
-    public void setFuel(Fuel fuel) throws PhotoComponentException {
-        if (fuel == null) {
-            throw new PhotoComponentException(new NullArgumentException("fuel"));
-        }
-        this.fuel = fuel;
+    public void setCar(Car car) {
+        this.car = car;
     }
 }
