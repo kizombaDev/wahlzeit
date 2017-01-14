@@ -56,11 +56,19 @@ public class CarManager {
         return car;
     }
 
+    /**
+     * @return
+     * @methodtype get
+     */
     public CarType getCarType(String make) {
         assertIfMakeAlreadyExists(make);
         return carTypeHashMap.get(make);
     }
 
+    /**
+     * @return
+     * @methodtype get
+     */
     public List<Car> getAllCars() {
         return cars;
     }
