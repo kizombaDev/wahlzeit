@@ -23,11 +23,14 @@ package org.wahlzeit.model;
 
 import javax.management.openmbean.KeyAlreadyExistsException;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class CarManager {
 
     private final HashMap<String, CarType> carTypeHashMap;
+    private final List<Car> cars = new ArrayList<>();
 
     private CarManager(HashMap<String, CarType> carTypeHashMap) {
         this.carTypeHashMap = carTypeHashMap;
@@ -49,26 +52,23 @@ public class CarManager {
         assertIfMakeAlreadyExists(make);
         CarType carType = getCarType(make);
         Car car = carType.createInstance(model, fuel, color, weight);
-        //todo marcel save car instance
+        cars.add(car);
         return car;
     }
 
-    /**
-     * @return
-     * @methodtype boolean query
-     */
-    public boolean canCreateCarOfMake(String audi) {
-        return carTypeHashMap.containsKey(audi);
+    public CarType getCarType(String make) {
+        assertIfMakeAlreadyExists(make);
+        return carTypeHashMap.get(make);
+    }
+
+    public List<Car> getAllCars() {
+        return cars;
     }
 
     private void assertIfMakeAlreadyExists(String make) {
         if (carTypeHashMap.containsKey(make) == false) {
             throw new KeyAlreadyExistsException("The make " + make + " does not exist");
         }
-    }
-
-    private CarType getCarType(String make) {
-        return carTypeHashMap.get(make);
     }
 
     public static class CarManagerBuilder {

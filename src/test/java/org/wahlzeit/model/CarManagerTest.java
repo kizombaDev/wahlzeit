@@ -2,6 +2,7 @@ package org.wahlzeit.model;
 
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import javax.management.openmbean.KeyAlreadyExistsException;
@@ -12,22 +13,25 @@ import java.awt.*;
  * Test class for {@link CarManager}.
  */
 public class CarManagerTest {
+    private CarManager carManager;
+
+    @Before
+    public void setUp() {
+        carManager = CarManager.builder().createMake("Volkswagen", "Germany").createMake("Audi", "Germany", "Volkswagen").build();
+    }
+
     @Test
     public void carManagerBuilderWithSubtypeTest() {
-        CarManager carManager = CarManager.builder().createMake("Volkswagen", "Germany").createMake("Audi", "Germany", "Volkswagen").build();
-        Assert.assertTrue(carManager.canCreateCarOfMake("Audi"));
+        Assert.assertEquals("Volkswagen", carManager.getCarType("Audi").getBaseCarType().getMake());
     }
 
     @Test
     public void carManagerBuilderTest() {
-        CarManager carManager = CarManager.builder().createMake("Volkswagen", "Germany").build();
-        Assert.assertTrue(carManager.canCreateCarOfMake("Volkswagen"));
-
+        Assert.assertEquals("Volkswagen", carManager.getCarType("Volkswagen").getMake());
     }
 
     @Test
     public void createCarTest() {
-        CarManager carManager = CarManager.builder().createMake("Audi", "Germany").build();
         Car a3 = carManager.createCar("Audi", "A3", Fuel.diesel, Color.CYAN, 1478.78);
         Assert.assertEquals("Audi", a3.getType().getMake());
         Assert.assertEquals("A3", a3.getModel());
@@ -38,6 +42,12 @@ public class CarManagerTest {
 
     @Test(expected = KeyAlreadyExistsException.class)
     public void carManagerBuilderBaseTypeIsMissingTest() {
-        CarManager carManager = CarManager.builder().createMake("Audi", "Germany", "Volkswagen").build();
+        CarManager.builder().createMake("Audi", "Germany", "Volkswagen").build();
+    }
+
+    @Test
+    public void getAllCarsTest() {
+        carManager.createCar("Audi", "A3", Fuel.diesel, Color.CYAN, 1478.78);
+        Assert.assertEquals("A3", carManager.getAllCars().get(0).getModel());
     }
 }
