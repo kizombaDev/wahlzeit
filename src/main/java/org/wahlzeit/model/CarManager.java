@@ -33,10 +33,18 @@ public class CarManager {
         this.carTypeHashMap = carTypeHashMap;
     }
 
+    /**
+     * @return
+     * @methodtype factory
+     */
     public static CarManagerBuilder builder() {
         return new CarManagerBuilder();
     }
 
+    /**
+     * @return
+     * @methodtype factory
+     */
     public Car createCar(String make, String model, Fuel fuel, Color color, double weight) {
         assertIfMakeAlreadyExists(make);
         CarType carType = getCarType(make);
@@ -45,10 +53,10 @@ public class CarManager {
         return car;
     }
 
-    private CarType getCarType(String make) {
-        return carTypeHashMap.get(make);
-    }
-
+    /**
+     * @return
+     * @methodtype boolean query
+     */
     public boolean canCreateCarOfMake(String audi) {
         return carTypeHashMap.containsKey(audi);
     }
@@ -57,6 +65,10 @@ public class CarManager {
         if (carTypeHashMap.containsKey(make) == false) {
             throw new KeyAlreadyExistsException("The make " + make + " does not exist");
         }
+    }
+
+    private CarType getCarType(String make) {
+        return carTypeHashMap.get(make);
     }
 
     public static class CarManagerBuilder {

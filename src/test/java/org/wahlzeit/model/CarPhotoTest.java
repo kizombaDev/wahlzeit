@@ -38,16 +38,15 @@ public class CarPhotoTest {
     private static final LocalServiceTestHelper helper = new LocalServiceTestHelper(new LocalBlobstoreServiceTestConfig());
     private CarPhoto carPhoto;
 
+    @Before
+    public void setUp() {
+        helper.setUp();
+        carPhoto = new CarPhoto();
+    }
+
     @After
     public void tearDown() {
         helper.tearDown();
-    }
-
-    @Before
-    public void setUp() {
-
-        helper.setUp();
-        carPhoto = new CarPhoto();
     }
 
     @Test(expected = PhotoComponentException.class)

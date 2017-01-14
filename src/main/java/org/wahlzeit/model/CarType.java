@@ -67,12 +67,18 @@ public class CarType {
         return baseCarType;
     }
 
-    //todo marcel comment with methodtype
+    /**
+     * @return
+     * @methodtype factory
+     */
     public Car createInstance(String model, Fuel fuel, Color color, double weight) {
         return new Car(this, model, fuel, color, weight);
     }
 
-    //todo marcel comment with methodtype
+    /**
+     * @return
+     * @methodtype boolean query
+     */
     public boolean isSubtype(CarType type) {
 
         CarType currentType = baseCarType;
