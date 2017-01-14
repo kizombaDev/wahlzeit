@@ -4,9 +4,13 @@ package org.wahlzeit.model;
 import org.junit.Assert;
 import org.junit.Test;
 
+import javax.management.openmbean.KeyAlreadyExistsException;
 import java.awt.*;
 
 
+/**
+ * Test class for {@link CarManager}.
+ */
 public class CarManagerTest {
     @Test
     public void carManagerBuilderWithSubtypeTest() {
@@ -30,5 +34,10 @@ public class CarManagerTest {
         Assert.assertEquals(Fuel.diesel, a3.getFuel());
         Assert.assertEquals(Color.CYAN, a3.getColor());
         Assert.assertEquals(1478.78, a3.getWeight(), 0.01);
+    }
+
+    @Test(expected = KeyAlreadyExistsException.class)
+    public void carManagerBuilderBaseTypeIsMissingTest() {
+        CarManager carManager = CarManager.builder().createMake("Audi", "Germany", "Volkswagen").build();
     }
 }

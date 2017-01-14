@@ -11,7 +11,7 @@ public class AssertUtil {
         }
     }
 
-    //todo tests
+    //todo marcel tests
     public static void assertParameterIsNotNullOrEmpty(String underTest, String parameterName) {
         if (StringUtil.isNullOrEmptyString(underTest)) {
             throw new NullArgumentException(parameterName);

@@ -6,6 +6,9 @@ import org.junit.Test;
 
 import java.awt.*;
 
+/**
+ * Test class for {@link CarType}.
+ */
 public class CarTypeTest {
 
     private CarType audi;

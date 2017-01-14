@@ -15,4 +15,19 @@ public class AssertUtilTest {
     {
         AssertUtil.assertParameterIsNotNull("", "");
     }
+
+    @Test(expected = NullArgumentException.class)
+    public void passNullToAssertParameterIsNotNullOrEmpty() {
+        AssertUtil.assertParameterIsNotNullOrEmpty(null, "");
+    }
+
+    @Test(expected = NullArgumentException.class)
+    public void passEmptyStringToAssertParameterIsNotNullOrEmpty() {
+        AssertUtil.assertParameterIsNotNullOrEmpty("", "");
+    }
+
+    @Test
+    public void passFooToAssertParameterIsNotNullOrEmpty() {
+        AssertUtil.assertParameterIsNotNullOrEmpty("Foo", "");
+    }
 }

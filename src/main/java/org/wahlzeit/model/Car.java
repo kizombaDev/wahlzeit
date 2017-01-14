@@ -35,7 +35,6 @@ public class Car {
     protected final double weight;
 
     public Car(CarType carType, String model, Fuel fuel, Color color, double weight) {
-        //todo tests
         AssertUtil.assertParameterIsNotNull(carType, "carType");
         AssertUtil.assertParameterIsNotNull(fuel, "fuel");
         AssertUtil.assertParameterIsNotNull(color, "color");
@@ -90,6 +89,10 @@ public class Car {
         return model;
     }
 
+    /**
+     * @return
+     * @methodtype assert
+     */
     private void assertCarWeight(double weight) {
         if (weight <= 0) {
             throw new InvalidParameterException("The weight of the car should be greater than zero");

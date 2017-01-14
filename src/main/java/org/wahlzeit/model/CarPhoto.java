@@ -45,10 +45,18 @@ public class CarPhoto extends Photo {
         }
     }
 
+    /**
+     * @return
+     * @methodtype get
+     */
     public Car getCar() {
         return car;
     }
 
+    /**
+     * @return
+     * @methodtype set
+     */
     public void setCar(Car car) {
         this.car = car;
     }

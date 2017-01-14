@@ -20,25 +20,46 @@
 
 package org.wahlzeit.model;
 
+import com.google.appengine.tools.development.testing.LocalBlobstoreServiceTestConfig;
+import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
+import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.wahlzeit.exceptions.PhotoComponentException;
 
+import java.awt.*;
 
+/**
+ * Test class for {@link CarPhoto}.
+ */
 public class CarPhotoTest {
 
+    private static final LocalServiceTestHelper helper = new LocalServiceTestHelper(new LocalBlobstoreServiceTestConfig());
     private CarPhoto carPhoto;
+
+    @After
+    public void tearDown() {
+        helper.tearDown();
+    }
 
     @Before
     public void setUp() {
+
+        helper.setUp();
         carPhoto = new CarPhoto();
     }
-
 
     @Test(expected = PhotoComponentException.class)
     public void passNullToConstructorTest() throws PhotoComponentException {
         new CarPhoto(null);
     }
 
-    //todo marcel tests
+    @Test
+    public void carPropertyTest() {
+        Car a3 = CarManager.builder().createMake("Audi", "Germany").build().createCar("Audi", "A3", Fuel.diesel, Color.black, 1478.4);
+        carPhoto.setCar(a3);
+
+        Assert.assertSame(a3, carPhoto.getCar());
+    }
 }

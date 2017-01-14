@@ -60,21 +60,19 @@ public class CarManager {
     }
 
     public static class CarManagerBuilder {
-
         private HashMap<String, CarType> carTypeHashMap = new HashMap<>();
 
         public CarManagerBuilder createMake(String make, String country) {
 
             assertIfMakeNotExists(make);
-            carTypeHashMap.put(make, new CarType(null, make, country));
-            return this;
+            return doCreateMake(make, country, null);
         }
 
         public CarManagerBuilder createMake(String make, String country, String baseType) {
             assertIfMakeAlreadyExists(baseType);
             assertIfMakeNotExists(make);
-            carTypeHashMap.put(make, new CarType(carTypeHashMap.get(baseType), make, country));
-            return this;
+
+            return doCreateMake(make, country, carTypeHashMap.get(baseType));
         }
 
         public CarManager build() {
@@ -83,6 +81,11 @@ public class CarManager {
             //reset the internal builder HashMap so that a new builder call starts with a emtpy HashMap
             carTypeHashMap = new HashMap<>();
             return carManager;
+        }
+
+        private CarManagerBuilder doCreateMake(String make, String country, CarType baseType) {
+            carTypeHashMap.put(make, new CarType(baseType, make, country));
+            return this;
         }
 
         private void assertIfMakeAlreadyExists(String make) {
