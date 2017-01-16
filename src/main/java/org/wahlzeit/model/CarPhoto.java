@@ -60,4 +60,19 @@ public class CarPhoto extends Photo {
     public void setCar(Car car) {
         this.car = car;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CarPhoto carPhoto = (CarPhoto) o;
+
+        return getCar() != null ? getCar().equals(carPhoto.getCar()) : carPhoto.getCar() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return getCar() != null ? getCar().hashCode() : 0;
+    }
 }

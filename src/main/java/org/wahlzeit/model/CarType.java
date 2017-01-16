@@ -93,4 +93,24 @@ public class CarType {
 
         return false;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CarType carType = (CarType) o;
+
+        if (!getMake().equals(carType.getMake())) return false;
+        if (!country.equals(carType.country)) return false;
+        return getBaseCarType() != null ? getBaseCarType().equals(carType.getBaseCarType()) : carType.getBaseCarType() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getMake().hashCode();
+        result = 31 * result + country.hashCode();
+        result = 31 * result + (getBaseCarType() != null ? getBaseCarType().hashCode() : 0);
+        return result;
+    }
 }

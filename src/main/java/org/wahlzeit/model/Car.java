@@ -98,4 +98,31 @@ public class Car {
             throw new InvalidParameterException("The weight of the car should be greater than zero");
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Car car = (Car) o;
+
+        if (Double.compare(car.getWeight(), getWeight()) != 0) return false;
+        if (!carType.equals(car.carType)) return false;
+        if (!getModel().equals(car.getModel())) return false;
+        if (getFuel() != car.getFuel()) return false;
+        return getColor().equals(car.getColor());
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = carType.hashCode();
+        result = 31 * result + getModel().hashCode();
+        result = 31 * result + getFuel().hashCode();
+        result = 31 * result + getColor().hashCode();
+        temp = Double.doubleToLongBits(getWeight());
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
 }
