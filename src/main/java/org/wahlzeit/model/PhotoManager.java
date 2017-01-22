@@ -44,13 +44,11 @@ import java.util.logging.Logger;
 )
 public class PhotoManager extends ObjectManager {
 
+    private static final Logger log = Logger.getLogger(PhotoManager.class.getName());
     /**
      *
      */
-    protected static final PhotoManager instance = new PhotoManager();
-
-    private static final Logger log = Logger.getLogger(PhotoManager.class.getName());
-
+    protected static PhotoManager instance = new PhotoManager();
     /**
      * In-memory cache for photos
      */
